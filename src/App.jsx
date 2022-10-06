@@ -43,8 +43,6 @@ import AdminEventDetails from "./pages-admin/eventDetails";
 import Messages from "./pages/messages";
 import TermsUse from "./pages/termsUse";
 import Privacy from "./pages/privacy";
-import { useDispatch } from "react-redux";
-import { getAllUsers } from "./store/actions/userAction";
 
 const options = {
   timeout: 5000,
@@ -53,11 +51,7 @@ const options = {
 };
 
 const App = () => {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
-  React.useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
   return (
     <div>
       <AlertProvider template={AlertTemplate} {...options}>

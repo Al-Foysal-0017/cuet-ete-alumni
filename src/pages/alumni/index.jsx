@@ -21,9 +21,9 @@ const Alumni = () => {
       item.batch.toLowerCase().includes(search.toLowerCase())
   );
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   return (
     <Container>
