@@ -1,0 +1,31 @@
+.cuet-alumni-loading {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.321);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  position: fixed;
+}
+
+.cuet-alumni-loading > div {
+  width: 148px;
+  height: 148px;
+  border-bottom: 5px solid #05be71;
+  border-radius: 50%;
+  animation: loadingRotate 800ms linear infinite;
+}
+
+@keyframes loadingRotate {
+  to {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .cuet-alumni-loading > div {
+    width: 84px;
+    height: 84px;
+  }
+}

@@ -1,0 +1,108 @@
+.recentJobHome {
+  background: #f4f4f4;
+  padding-bottom: 7rem;
+
+  &__title {
+    padding-top: 7rem;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+
+    &__img {
+      border-radius: 50%;
+    }
+
+    &__itemtxtContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__item {
+      border-radius: 10px;
+      margin-top: 3rem;
+      width: 30%;
+      border: 1px solid #bababa;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.4s ease-in-out;
+      box-shadow: 10px 10px 11px -5px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 10px 10px 11px -5px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 10px 10px 11px -5px rgba(0, 0, 0, 0.75);
+      &:hover {
+        box-shadow: -1px 2px 8px 2px rgba(0, 0, 0, 0.53);
+        -webkit-box-shadow: -1px 2px 8px 2px rgba(0, 0, 0, 0.53);
+        -moz-box-shadow: -1px 2px 8px 2px rgba(0, 0, 0, 0.53);
+      }
+
+      &__title {
+        font-family: "Source Serif Pro", serif;
+        font-size: 24px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 1.5rem;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: #05be71;
+        }
+      }
+
+      &__details {
+        margin-top: 1rem;
+        line-height: 1.2;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      &__btn {
+        border: none;
+        background: #05be71;
+        color: #fff;
+        padding: 12px 18px;
+        font-size: 18px;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .recentJobHome {
+    &__cards {
+      flex-direction: column;
+
+      &__item {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      &__itemtxtContainer {
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .recentJobHome {
+    &__cards {
+      flex-direction: column;
+
+      &__item {
+        width: 100%;
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+.upcomming {
+  background: #f4f4f4;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+      margin-top: 5rem;
+      width: 30%;
+
+      &__month {
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      &__date {
+        font-family: "Source Serif Pro", serif;
+        font-size: 64px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      &__title {
+        font-family: "Source Serif Pro", serif;
+        font-size: 26px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: #05be71;
+        }
+      }
+
+      &__icon {
+        color: #05be71;
+      }
+
+      &__particularDate {
+        margin-top: 1rem;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+
+      &__media {
+        margin-top: 8px;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+
+      &__organization {
+        margin-top: 8px;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .upcomming {
+    height: auto;
+
+    &__cards {
+      flex-direction: column;
+
+      &__item {
+        width: 100%;
+
+        &__month {
+          font-size: 20px;
+        }
+
+        &__date {
+          font-size: 48px;
+        }
+
+        &__title {
+          font-size: 24px;
+        }
+
+        &__particularDate {
+          font-size: 18px;
+        }
+
+        &__media {
+          font-size: 18px;
+        }
+
+        &__organization {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.performance {
+  background: #010606;
+  color: #fff;
+  padding: 7rem 0;
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+    &__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20%;
+
+      &__left {
+        margin-right: 2rem;
+        color: #fff;
+        color: #05be71;
+      }
+      &__right {
+        &__top {
+          font-family: "Source Serif Pro", serif;
+          font-size: 48px;
+          line-height: 1.2;
+          font-weight: 700;
+          color: #fff;
+        }
+        &__bottom {
+          font-size: 24px;
+          font-weight: 600;
+          // color: #05be71;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .performance {
+    &__cards {
+      flex-wrap: wrap;
+      &__item {
+        padding: 2rem 0;
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .performance {
+    &__cards {
+      flex-wrap: wrap;
+      &__item {
+        padding: 2rem 0;
+        width: 100%;
+      }
+    }
+  }
+}

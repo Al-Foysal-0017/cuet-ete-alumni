@@ -1,0 +1,18 @@
+.alumni__subtitle {
+  line-height: 1.2;
+  margin-top: -0.25em;
+  font-size: 22px;
+  max-width: 780px;
+}
+
+@media (max-width: 1024px) {
+  .alumni__subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .alumni__subtitle {
+    font-size: 18px;
+  }
+}

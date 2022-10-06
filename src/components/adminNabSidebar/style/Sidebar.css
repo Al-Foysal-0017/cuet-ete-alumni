@@ -1,0 +1,104 @@
+.Sidebar {
+  background: #fff;
+  position: static;
+  width: auto;
+  z-index: 999;
+  min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
+  padding: 1rem;
+  box-shadow: -15px 0px 10px -15px #111 inset;
+}
+
+.adminTopHeader {
+  color: #000;
+  font-weight: bold;
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin-top: 2rem;
+}
+
+.adminSidebarLogo {
+  display: flex;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 8px;
+  flex-wrap: nowrap;
+}
+
+.backToHome {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ListContainerAdmin {
+  margin-top: 4rem;
+}
+
+.ListContainerAdminTitle {
+  text-align: center;
+  font-weight: 400;
+  color: gray;
+}
+
+.adminSidebarList {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  padding-top: 1rem;
+  cursor: pointer;
+}
+
+.transform {
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.translateForSidebar {
+  --tw-translate-x: 0px;
+}
+
+.translateForSidebarNeg {
+  --tw-translate-x: -100%;
+}
+
+@media (min-width: 1240px) {
+  .translateForSidebarNeg {
+    --tw-translate-x: 0px;
+  }
+}
+
+@media (max-width: 1240px) {
+  .Sidebar {
+    width: 300px;
+    z-index: 999;
+    position: fixed;
+  }
+}

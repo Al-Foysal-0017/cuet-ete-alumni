@@ -1,0 +1,146 @@
+.app__container {
+  display: flex;
+  min-height: 100vh;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+hr {
+  opacity: 0.3;
+}
+
+.shadow-inner {
+  box-shadow: inset 0 0.3rem 3rem rgba(243, 240, 240, 0.1);
+}
+
+.logo-color {
+  color: #b2b2b2;
+}
+
+.styleTxt {
+  font-family: "Dancing Script", cursive;
+}
+
+input {
+  width: 100%;
+  max-width: 800px;
+  padding: 1.2rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  outline: none;
+}
+
+input:focus {
+  outline: 0;
+  border: 2px solid #05be71;
+  box-shadow: 0 0 0 3px #05be7139;
+}
+
+select {
+  width: 100%;
+  max-width: 800px;
+  padding: 1.2rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  outline: none;
+}
+
+textarea {
+  width: 100%;
+  max-width: 800px;
+  padding: 1.2rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+  font-size: 18px;
+  outline: none;
+}
+
+textarea:focus {
+  outline: 0;
+  border: 2px solid #05be71;
+  box-shadow: 0 0 0 3px #05be7139;
+}
+
+label {
+  color: rgba(128, 128, 128, 0.771);
+  padding-left: 5px;
+}
+
+.testPage {
+  display: flex;
+  justify-content: center;
+  font-size: 96px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.mt-280 {
+  margin-top: -280px;
+}
+
+.mt1rem {
+  margin-top: 0.6rem;
+}
+@media (max-width: 1024px) {
+  .mt1rem {
+    margin-top: 0;
+  }
+}
+
+.bgWhite {
+  background: rgba(0, 0, 0, 0.4);
+  height: fit-content;
+  padding: 2rem 4rem;
+  border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  .testPage {
+    font-size: 64px;
+  }
+  .mt-280 {
+    margin-top: -270px;
+  }
+}
+
+@media (max-width: 640px) {
+  .testPage {
+    font-size: 48px;
+  }
+  .mt-280 {
+    margin-top: -270px;
+  }
+}
+
+@media (max-width: 450px) {
+  .testPage {
+    font-size: 32px;
+  }
+  .bgWhite {
+    padding: 2rem;
+  }
+  .mt-280 {
+    margin-top: -264px;
+  }
+}
+
+.tableButton {
+  border: none;
+  padding: 4px 2px;
+  margin: 0 2px;
+  font-size: 12px;
+  background: #05be71;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}

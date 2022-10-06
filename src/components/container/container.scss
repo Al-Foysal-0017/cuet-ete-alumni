@@ -1,0 +1,32 @@
+@import "../../_base.scss";
+
+.alumni__container {
+  padding: 0 3.5rem;
+  max-width: $desktop;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: $laptop) {
+  .alumni__container {
+    padding: 0 3rem;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .alumni__container {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .alumni__container {
+    // padding: 0 1.5rem;
+    padding: 0 12px;
+  }
+}
+
+@media screen and (max-width: $small) {
+  .alumni__container {
+    padding: 0 10px;
+  }
+}

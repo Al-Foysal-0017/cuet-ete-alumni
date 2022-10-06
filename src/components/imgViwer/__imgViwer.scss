@@ -1,0 +1,57 @@
+.imageViewer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 99999999999999999999999999999;
+}
+
+.imageViewerContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cancelOut {
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.imageViewerImg {
+  width: 90vw;
+  height: 80vh;
+  max-width: 1024px;
+  max-height: 800px;
+  object-fit: cover;
+  padding: 1rem;
+  border-radius: 8px;
+  z-index: 999999999999999999999999999999999999;
+}
+
+@media (max-width: 700px) {
+  .imageViewerImg {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .imageViewerImg {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageViewerImg {
+    max-height: 340px;
+  }
+}

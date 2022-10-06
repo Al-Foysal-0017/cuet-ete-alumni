@@ -1,0 +1,124 @@
+.events {
+  height: 800px;
+  padding-top: 7rem;
+  display: flex;
+  justify-content: center;
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 7rem 0;
+
+    &__item {
+      background: #f4f4f4;
+      width: 480px;
+      padding: 4rem 3rem;
+      margin: 16px;
+      border-radius: 10px;
+      box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.75);
+
+      &__month {
+        font-size: 24px;
+        font-weight: 500;
+      }
+
+      &__date {
+        font-family: "Source Serif Pro", serif;
+        font-size: 64px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+
+      &__title {
+        font-family: "Source Serif Pro", serif;
+        font-size: 26px;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-color: #05be71;
+        }
+      }
+
+      &__icon {
+        color: #05be71;
+      }
+
+      &__particularDate {
+        margin-top: 1rem;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+
+      &__media {
+        margin-top: 8px;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+
+      &__organization {
+        margin-top: 8px;
+        line-height: 1.2;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 940px) {
+  .events {
+    // padding-bottom: 7rem;
+    height: auto;
+
+    &__cards {
+      flex-direction: column;
+
+      &__item {
+        width: 100%;
+        margin: 0;
+        margin-top: 1rem;
+
+        &__month {
+          font-size: 20px;
+        }
+
+        &__date {
+          font-size: 48px;
+        }
+
+        &__title {
+          font-size: 24px;
+        }
+
+        &__particularDate {
+          font-size: 18px;
+        }
+
+        &__media {
+          font-size: 18px;
+        }
+
+        &__organization {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .events {
+    &__cards {
+      &__item {
+        padding: 2.5rem 1rem;
+      }
+    }
+  }
+}

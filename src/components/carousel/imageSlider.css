@@ -1,0 +1,141 @@
+.slider {
+  width: 100%;
+}
+
+.slider-container {
+  display: flex;
+}
+
+.slider-left {
+  width: 30%;
+  z-index: 9;
+}
+
+.slider-right {
+  width: 70%;
+}
+
+.imageSlider-textBox {
+  font-size: 36px;
+  background: #ffff;
+  margin-right: -8rem;
+  height: 350px;
+  padding: 3rem;
+  border: 2px solid #000;
+  border-top: 8px solid #000;
+  font-weight: 600;
+  margin-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Source Serif Pro", serif;
+  font-size: 44px;
+  letter-spacing: 2px;
+  min-width: 450px;
+}
+
+@media (max-width: 1240px) {
+  .imageSlider-textBox {
+    font-size: 40px;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+}
+
+.arrowIconHome {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s all ease-in-out;
+  font-size: 48px;
+}
+.arrowIconHome:hover {
+  opacity: 1;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+  transform: scale(0.99);
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1);
+}
+
+@media (max-width: 1024px) {
+  .slider {
+    height: auto;
+    width: 100%;
+  }
+  .slider-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .slider-left {
+    width: 100%;
+    z-index: 9;
+    min-width: 100%;
+  }
+
+  .slider-right {
+    width: 100%;
+  }
+
+  .imageSlider-textBox {
+    margin-right: 0;
+    height: 280px;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    border: none;
+    font-size: 40px;
+    font-weight: 600;
+    padding-top: 16px;
+    border: 2px solid #000;
+    border-top: 8px solid #000;
+    margin-top: -124px;
+    max-width: 550px;
+    padding: 2rem 4rem;
+    padding-top: 3rem;
+    width: 100%;
+  }
+  .image {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+  }
+}
+@media (max-width: 640px) {
+  .imageSlider-textBox {
+    width: 85%;
+    min-width: auto;
+    margin-top: -82px;
+    font-size: 28px;
+    height: auto;
+    padding: 2rem 2.5rem;
+  }
+  .image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+  }
+  .arrowIconHome {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 424px) {
+  .imageSlider-textBox {
+    padding: 1rem 1.5rem;
+    font-size: 22px;
+  }
+  .image {
+    width: 100%;
+  }
+}

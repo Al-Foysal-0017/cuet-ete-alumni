@@ -1,0 +1,46 @@
+.createStoryLinkBox {
+  border: 1px solid #000;
+  max-width: 640px;
+  margin: 0 auto;
+  margin-top: 5rem;
+  padding: 1rem;
+  box-shadow: 5px 4px 12px -2px rgba(0, 0, 0, 0.92);
+  -webkit-box-shadow: 5px 4px 12px -2px rgba(0, 0, 0, 0.92);
+  -moz-box-shadow: 5px 4px 12px -2px rgba(0, 0, 0, 0.92);
+
+  &__ques {
+    font-size: 15px;
+  }
+
+  &__create {
+    background: #05be71;
+    border: none;
+    padding: 8px 18px;
+    color: #fff;
+    margin-top: 12px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 4px;
+  }
+}
+
+.storiesNoApproval {
+  background: tomato;
+  margin-top: 8px;
+  width: fit-content;
+  padding: 8px;
+  color: #fff;
+}
+
+.LikeContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  cursor: pointer;
+  &__icon {
+    margin-right: 0.5rem;
+  }
+  &__num {
+    font-size: 32px;
+  }
+}

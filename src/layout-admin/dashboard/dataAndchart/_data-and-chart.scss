@@ -1,0 +1,128 @@
+@import "../../../_base.scss";
+
+.data-chart {
+  display: flex;
+  margin-top: 40px;
+
+  &__left {
+    flex: 0.3;
+    background-color: $black-secondary;
+    border-radius: 8px;
+    padding: 28px;
+
+    &__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &__title {
+        font-weight: 600;
+        font-size: 18px;
+        opacity: 0.7;
+      }
+
+      &__value {
+        font-weight: 600;
+        font-size: 32px;
+        letter-spacing: -0.02em;
+      }
+
+      &__row2 {
+        display: flex;
+        margin-top: 18px;
+        margin-bottom: 16px;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &__items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+
+        &__title {
+          font-weight: 500;
+          font-size: 14px;
+          opacity: 0.7;
+
+          span {
+            background: #2f3030;
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0.7;
+            padding: 3px;
+            margin-left: 3px;
+            border-radius: 2px;
+          }
+        }
+
+        &__value {
+          font-weight: 600;
+          font-size: 14px;
+          display: flex;
+
+          div {
+            color: $green;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+    }
+
+    p {
+      display: flex;
+      padding: 18px 0 16px 0;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &__right {
+    flex: 0.7;
+    padding: 5px 0 0 28px;
+
+    &__progressBar {
+      background-color: $black-secondary;
+      padding: 0 24px;
+      border-radius: 8px;
+
+      &__title {
+        padding-top: 24px;
+        padding-bottom: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      &__value {
+        padding-top: 4px;
+        padding-bottom: 24px;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .data-chart {
+    display: flex;
+    flex-direction: column;
+
+    &__left {
+      flex: 1;
+    }
+
+    &__right {
+      flex: 1;
+      padding: 0;
+    }
+  }
+}

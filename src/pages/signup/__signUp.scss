@@ -1,0 +1,60 @@
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  width: 100%;
+  max-width: 800px;
+}
+
+.signUpIndex {
+  display: flex;
+  flex-direction: column;
+}
+
+.signUp {
+  min-height: 100vh;
+
+  &__form {
+    width: 100%;
+    border: 1px solid #bababa;
+    padding: 7rem 3rem 10rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -10rem;
+    margin-bottom: 12rem;
+    background: #fff;
+    box-shadow: -1px 0px 14px 3px rgba(0, 0, 0, 0.68);
+    -webkit-box-shadow: -1px 0px 14px 3px rgba(0, 0, 0, 0.68);
+    -moz-box-shadow: -1px 0px 14px 3px rgba(0, 0, 0, 0.68);
+    border-radius: 10px;
+
+    &__title {
+      padding-bottom: 3rem;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    max-width: 800px;
+    padding: 1.2rem 1rem;
+    font-size: 18px;
+  }
+}
+
+.signUpBanner {
+  background-image: url("../../assets/img/tree.JPG");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}

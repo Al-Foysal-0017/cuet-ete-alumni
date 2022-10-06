@@ -1,0 +1,64 @@
+.gallary {
+  background: #010606;
+  color: #fff;
+  padding: 134px 3rem;
+
+  &__title {
+    margin-bottom: 64px;
+    text-align: center;
+    font-family: "Source Serif Pro", serif;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+.gallaryCard {
+  padding: 8px;
+  &_img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.02);
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .gallaryCard {
+    &_img {
+      width: 180px;
+      height: 180px;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .gallaryCard {
+    &_img {
+      width: 110px;
+      height: 110px;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .gallaryCard {
+    &_img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+}

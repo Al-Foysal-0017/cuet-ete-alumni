@@ -1,0 +1,85 @@
+/* loading placeholder start */
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+.loading {
+  width: 30px;
+  height: 15px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    90deg,
+    #e4e4e4 0%,
+    #f1f1f1 40%,
+    #ededed 60%,
+    #e4e4e4 100%
+  );
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  animation: animatedBackground 5s linear infinite;
+}
+
+.circle {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.rainbow {
+  width: 120px;
+  height: 20px;
+  margin: 5px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    90deg,
+    red 0%,
+    orange 7%,
+    yellow 21%,
+    green 35%,
+    blue 49%,
+    indigo 63%,
+    violet 77%,
+    red 91%
+  );
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  animation: animatedBackground 5s linear infinite;
+}
+
+.container {
+  display: flex;
+}
+/* loading placeholder finished */
+
+/* dashboard top circle hover set start*/
+.cngTxtHover .txtShowLast {
+  display: none;
+}
+.cngTxtHover:hover .txtShowFirst {
+  display: none;
+}
+.cngTxtHover:hover .txtShowLast {
+  display: flex;
+}
+/* dashboard top circle hover finished */
+
+@media (min-width: 1350px) {
+  .setHightForVoteLeftBox {
+    max-height: 360px;
+  }
+}
+@media (max-width: 1350px) {
+  .setHightForVoteLeftBox {
+    max-height: 360px;
+  }
+}
+@media (max-width: 1200px) {
+  .setHightForVoteLeftBox {
+    max-height: 420px;
+  }
+}

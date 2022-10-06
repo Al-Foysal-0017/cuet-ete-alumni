@@ -1,0 +1,121 @@
+.storyDetails {
+  &__postedBy {
+    padding-top: 3rem;
+    &__title {
+      color: gray;
+    }
+    &__container {
+      display: flex;
+      align-items: center;
+    }
+    &__img {
+      margin-top: 8px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    &__name {
+      font-size: 18px;
+      font-weight: 600;
+      padding-left: 1rem;
+    }
+    &__date {
+      font-size: 14px;
+      padding-top: 2px;
+      padding-left: 1rem;
+    }
+  }
+  &__banner {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  &__content {
+    padding-top: 2rem;
+    &__title {
+      font-size: 32px;
+      font-weight: 600;
+      padding-bottom: 3px;
+    }
+    &__organized {
+      font-size: 20px;
+      color: grey;
+    }
+    &__desc {
+      padding-top: 1.5rem;
+      max-width: 800px;
+    }
+  }
+  &__form {
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    padding: 4px 8px;
+    margin-top: 7rem;
+    box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.75);
+  }
+
+  &__comments {
+    margin-top: 3rem;
+    margin-bottom: 7rem;
+    &__title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    &__box {
+      border-left: 2px solid rgba(128, 128, 128, 0.279);
+    }
+  }
+
+  &__comment {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    border: 2px solid rgba(128, 128, 128, 0.279);
+    max-width: 800px;
+    border-radius: 10px;
+    padding: 1rem;
+
+    &__top {
+      display: flex;
+      &__img {
+        border-radius: 50%;
+      }
+      &__name {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+        font-size: 14px;
+      }
+    }
+
+    &__text {
+      margin-top: 2rem;
+      padding-left: 8px;
+      font-size: 18px;
+    }
+  }
+}
+
+.commentBoxBorderStyle {
+  border-top: 2px solid rgba(128, 128, 128, 0.279);
+  position: absolute;
+  z-index: 99999;
+  // height: 30px;
+  width: 1rem;
+  margin-top: 3rem;
+}
+
+.noCommmnet {
+  border: 1px solid tomato;
+  padding: 1rem;
+  color: tomato;
+  margin-top: 1rem;
+  max-width: 200px;
+}

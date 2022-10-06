@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@200;300;400;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+
+$text-color: #fff;
+$text-color-gray: #595959;
+
+$white: #fff;
+
+$black-primary: #020202;
+$black-secondary: #181919;
+$primary: #05be71;
+$secondary: #4a4e75;
+$hover: #1e1f33;
+$green: #7dffd9;
+$red: #ff8c8c;
+
+$desktop: 1440px;
+$laptop: 1240px;
+$tablet: 920px;
+$mobile: 640px;
+$small: 424px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.1px;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  background-color: #fff;
+  -webkit-box-shadow: inset 5px 5px 15px 5px rgba(153, 153, 153, 0.11);
+  box-shadow: inset 5px 5px 15px 5px rgba(153, 153, 153, 0.11);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $primary;
+  border-radius: 10px;
+}

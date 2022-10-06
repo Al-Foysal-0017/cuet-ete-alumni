@@ -1,0 +1,59 @@
+.commentLoaderContainer {
+  margin-top: 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.313);
+  padding: 16px;
+  max-width: 800px;
+  border-radius: 8px;
+}
+
+.commentLoaderCircle {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    90deg,
+    #e4e4e4 0%,
+    #f1f1f1 40%,
+    #ededed 60%,
+    #e4e4e4 100%
+  );
+  animation: animatedBackground 0.5s linear infinite;
+}
+
+.commentLoader {
+  width: 100%;
+  height: 100%;
+  height: 20px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    90deg,
+    #e4e4e4 0%,
+    #f1f1f1 40%,
+    #ededed 60%,
+    #e4e4e4 100%
+  );
+  background-position: 0px 0px;
+  background-repeat: repeat;
+  animation: animatedBackground 0.5s linear infinite;
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 1000px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .commentLoader {
+    height: 18px;
+  }
+}
+@media (max-width: 640px) {
+  .commentLoader {
+    height: 17px;
+  }
+}

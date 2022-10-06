@@ -1,0 +1,27 @@
+.pageLoader {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageLoader > div {
+  width: 148px;
+  height: 148px;
+  border-bottom: 5px solid #05be71;
+  border-radius: 50%;
+  animation: loadingRotate 800ms linear infinite;
+}
+
+@keyframes loadingRotate {
+  to {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .pageLoader > div {
+    width: 84px;
+    height: 84px;
+  }
+}

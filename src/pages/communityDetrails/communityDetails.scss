@@ -1,0 +1,79 @@
+.communityDetails {
+  &__head {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #05be71;
+    margin-top: 3rem;
+  }
+
+  &__container {
+    margin-bottom: 7rem;
+  }
+
+  &__box {
+    border: 1px solid rgba(128, 128, 128, 0.302);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 1rem;
+    box-shadow: 10px 10px 14px -7px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 14px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 14px -7px rgba(0, 0, 0, 0.75);
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+
+  &__img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &__button {
+    margin-top: 1rem;
+    background: #05be71;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 4px;
+    color: #fff;
+    font: 18px;
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.NoAlumniFound {
+  border: 1px solid tomato;
+  padding: 1rem;
+  color: tomato;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.inputFieldCommunityDetailsCont {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.inputFieldCommunityDetails {
+  font-size: 16px;
+  height: 40px;
+}
