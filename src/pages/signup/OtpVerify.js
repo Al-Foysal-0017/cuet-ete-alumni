@@ -16,6 +16,10 @@ const OtpVerify = () => {
   const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
 
+  if (!location.state.number) {
+    navigate("/sign-up");
+  }
+
   const { loading, registerErrors } = useSelector((state) => state.user);
   const handleSubmit = async (e) => {
     e.preventDefault();

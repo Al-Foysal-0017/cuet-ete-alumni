@@ -11,6 +11,7 @@ const Table = ({ users }) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [filterUsers, setFilterUsers] = useState(users);
+  const { token } = useSelector((state) => state.user);
 
   const { loading } = useSelector((state) => state.usersRequest);
 
@@ -22,6 +23,7 @@ const Table = ({ users }) => {
     try {
       const config = {
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       };

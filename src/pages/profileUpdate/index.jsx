@@ -19,8 +19,8 @@ const UpdateProfile = () => {
   const [showUpdateProfBtn, setUpdateProfBtn] = useState(false);
 
   const [email, setEmail] = useState(user?.email);
-  const [privious_working_position, setPrevWorkingPosition] = useState(
-    user?.privious_working_position
+  const [previous_working_position, setPrevWorkingPosition] = useState(
+    user?.previous_working_position
   );
   const [present_working_position, setPresentvWorkingPosition] = useState(
     user?.present_working_position
@@ -28,6 +28,7 @@ const UpdateProfile = () => {
   const [blood, setBlood] = useState(user?.blood);
   // const [department, setDepartment] = useState(user?.department);
   const [batch, setBatch] = useState(user?.batch);
+  const [country, setCountry] = useState(user?.country);
   const [graduation_year, set_graduation_year] = useState(
     user?.graduation_year
   );
@@ -39,9 +40,10 @@ const UpdateProfile = () => {
     const data = new FormData();
     data.append("file", initialImage);
     data.append("upload_preset", "mystore");
-    data.append("cloud_name", "dxfttihmd");
+    data.append("cloud_name", "da0cbopfq");
+    data.append("folder", "avatars");
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dxfttihmd/image/upload",
+      "https://api.cloudinary.com/v1_1/da0cbopfq/image/upload",
       {
         method: "POST",
         body: data,
@@ -64,8 +66,9 @@ const UpdateProfile = () => {
       graduation_year,
       blood,
       avatar,
-      privious_working_position,
+      previous_working_position,
       present_working_position,
+      country,
       facebook_link,
       linkedin_link,
     };
@@ -199,7 +202,7 @@ const UpdateProfile = () => {
             <label>Email</label>
             <input
               className="signUp__input"
-              type="email"
+              type="text"
               placeholder="Email"
               name="email"
               value={email}
@@ -307,36 +310,42 @@ const UpdateProfile = () => {
             />
           </div>
           <div className="inputBox">
-            <label>Present Working Position (Country)</label>
-            <div>
-              <select
-                value={present_working_position}
-                onChange={(e) => {
-                  setPresentvWorkingPosition(e.target.value);
-                }}
-              >
-                <option selected hidden value="">
-                  Select present working position
-                </option>
-                <option value="Australia">Australia</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Korea">Korea</option>
-                <option value="Germany">Germany</option>
-                <option value="USA">USA</option>
-              </select>
-            </div>
+            <label>Present Working Position</label>
+            <input
+              className="signUp__input"
+              type="text"
+              placeholder="Describe Your Present Working Position"
+              name="present_working_position"
+              value={present_working_position}
+              onChange={(e) => {
+                setPresentvWorkingPosition(e.target.value);
+              }}
+            />
           </div>
           <div className="inputBox">
-            <label>Past Working Position (Country)</label>
+            <label>Previous Working Position</label>
+            <input
+              className="signUp__input"
+              type="text"
+              placeholder="Describe Your Previous Working Position"
+              name="previous_working_position"
+              value={previous_working_position}
+              onChange={(e) => {
+                setPrevWorkingPosition(e.target.value);
+              }}
+            />
+          </div>
+          <div className="inputBox">
+            <label>Present Country</label>
             <div>
               <select
-                value={privious_working_position}
+                value={country}
                 onChange={(e) => {
-                  setPrevWorkingPosition(e.target.value);
+                  setCountry(e.target.value);
                 }}
               >
                 <option selected hidden value="">
-                  Select privious working position
+                  Select present country
                 </option>
                 <option value="Australia">Australia</option>
                 <option value="Bangladesh">Bangladesh</option>

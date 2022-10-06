@@ -20,11 +20,12 @@ const SetProfile = () => {
   const [loaderImg, setLoaderImg] = useState(false);
 
   const [email, setEmail] = useState("");
-  const [privious_working_position, setPrevWorkingPosition] = useState("");
+  const [previous_working_position, setPrevWorkingPosition] = useState("");
   const [present_working_position, setPresentvWorkingPosition] = useState("");
   const [blood, setBlood] = useState("");
   // const [department, setDepartment] = useState("");
   const [batch, setBatch] = useState("");
+  const [country, setCountry] = useState("");
   const [graduation_year, set_graduation_year] = useState("");
   const [facebook_link, setFacebookLink] = useState("");
   const [linkedin_link, setLinkedinLink] = useState("");
@@ -62,14 +63,15 @@ const SetProfile = () => {
 
     const myForm = {
       email: email || user?.email,
-      privious_working_position:
-        privious_working_position || user?.privious_working_position,
+      previous_working_position:
+        previous_working_position || user?.previous_working_position,
       present_working_position:
         present_working_position || user?.present_working_position,
       department: "ETE",
       batch: batch || user?.batch,
       graduation_year: graduation_year || user?.graduation_year,
       blood: blood || user?.blood,
+      country: country || user?.country,
       avatar,
       facebook_link: facebook_link || user?.facebook_link,
       linkedin_link: linkedin_link || user?.linkedin_link,
@@ -126,13 +128,14 @@ const SetProfile = () => {
             }}
           >
             <label>
-              Hey!!{" "}
+              Be patience,{" "}
               <span style={{ fontWeight: "600", color: "#05be71" }}>
-                {user?.firstName} {user?.lastName}.
+                {user?.firstName} {user?.lastName}
               </span>
+              .
             </label>
             <label style={{ textAlign: "center" }}>
-              It almost finished. Please fill up these information.It might be
+              It almost finished.Please fill up these information.It might be
               help you and your cuet ete dept batchmate, junior or senior to
               create a strong bonding. By the way, if you are busy at present
               than you can skip it now and set it later.
@@ -218,7 +221,7 @@ const SetProfile = () => {
             <label>Email</label>
             <input
               className="signUp__input"
-              type="email"
+              type="text"
               placeholder="Email"
               name="email"
               value={email}
@@ -328,36 +331,42 @@ const SetProfile = () => {
             />
           </div>
           <div className="inputBox">
-            <label>Present Working Position (Country)</label>
-            <div>
-              <select
-                value={present_working_position}
-                onChange={(e) => {
-                  setPresentvWorkingPosition(e.target.value);
-                }}
-              >
-                <option selected hidden value="">
-                  Select present working position
-                </option>
-                <option value="Australia">Australia</option>
-                <option value="Bangladesh">Bangladesh</option>
-                <option value="Korea">Korea</option>
-                <option value="Germany">Germany</option>
-                <option value="USA">USA</option>
-              </select>
-            </div>
+            <label>Present Working Position</label>
+            <input
+              className="signUp__input"
+              type="text"
+              placeholder="Describe Your Present Working Position"
+              name="present_working_position"
+              value={present_working_position}
+              onChange={(e) => {
+                setPresentvWorkingPosition(e.target.value);
+              }}
+            />
           </div>
           <div className="inputBox">
-            <label>Past Working Position (Country)</label>
+            <label>Previous Working Position</label>
+            <input
+              className="signUp__input"
+              type="text"
+              placeholder="Describe Your Previous Working Position"
+              name="previous_working_position"
+              value={previous_working_position}
+              onChange={(e) => {
+                setPrevWorkingPosition(e.target.value);
+              }}
+            />
+          </div>
+          <div className="inputBox">
+            <label>Present Country</label>
             <div>
               <select
-                value={privious_working_position}
+                value={country}
                 onChange={(e) => {
-                  setPrevWorkingPosition(e.target.value);
+                  setCountry(e.target.value);
                 }}
               >
                 <option selected hidden value="">
-                  Select privious working position
+                  Select present country
                 </option>
                 <option value="Australia">Australia</option>
                 <option value="Bangladesh">Bangladesh</option>

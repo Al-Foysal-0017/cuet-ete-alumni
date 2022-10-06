@@ -94,20 +94,25 @@ const Profile = () => {
                 <hr />
                 <div className="profileDetails__contr">
                   <div className="profileDetails__title">
-                    Previous working position (Country)
+                    Previous working position
                   </div>
                   <div className="profileDetails__value">
-                    {user?.privious_working_position}
+                    {user?.previous_working_position}
                   </div>
                 </div>
                 <hr />
                 <div className="profileDetails__contr">
                   <div className="profileDetails__title">
-                    Present working position (Country)
+                    Present working position
                   </div>
                   <div className="profileDetails__value">
                     {user?.present_working_position}
                   </div>
+                </div>
+                <hr />
+                <div className="profileDetails__contr">
+                  <div className="profileDetails__title">Present country</div>
+                  <div className="profileDetails__value">{user?.country}</div>
                 </div>
                 <hr />
                 <div className="profileDetails__contr">

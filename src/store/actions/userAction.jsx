@@ -167,11 +167,15 @@ export const getUserDetails = (id) => async (dispatch) => {
 
 // Update User
 export const updateUserRole = (id, userData) => async (dispatch, getState) => {
+  const {
+    user: { token },
+  } = getState();
   try {
     dispatch({ type: UPDATE_USER_REQUEST });
 
     const config = {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     };

@@ -19,6 +19,10 @@ const OtpPassword = () => {
   const [error2, setError2] = useState("");
   const [loading, setLoading] = useState(false);
 
+  if (!location.state.firstName || !location.state.lastName) {
+    navigate("/sign-up");
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
