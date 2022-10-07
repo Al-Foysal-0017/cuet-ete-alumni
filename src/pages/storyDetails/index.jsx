@@ -183,7 +183,7 @@ const StoryDetails = () => {
                           className="storyDetails__comment__top__img"
                           width={64}
                           height={64}
-                          src={item?.commentUser?.avatar}
+                          src={item?.commentUser?.avatar?.url}
                           alt=""
                         />
                       </Link>

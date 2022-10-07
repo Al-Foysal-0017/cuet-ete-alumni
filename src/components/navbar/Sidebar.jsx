@@ -81,7 +81,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                     >
                       <img
                         className="sidebarAuth-avatar"
-                        src={user?.avatar}
+                        src={user?.avatar?.url}
                         alt="avatar"
                       />
                       <div
@@ -114,7 +114,7 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
                   >
                     <img
                       className="sidebarAuth-avatar"
-                      src={user?.avatar}
+                      src={user?.avatar?.url}
                       alt="avatar"
                     />
                     <div

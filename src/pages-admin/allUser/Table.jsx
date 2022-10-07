@@ -12,7 +12,9 @@ const Table = ({ users }) => {
   const columns = [
     {
       name: "Image",
-      selector: (row) => <img src={row.avatar} alt="" width={80} height={80} />,
+      selector: (row) => (
+        <img src={row.avatar?.url} alt="" width={80} height={80} />
+      ),
     },
     {
       name: "Name",

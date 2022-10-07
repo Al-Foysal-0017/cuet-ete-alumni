@@ -1,19 +1,60 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getUserDetails, updateUserRole } from "../../store/actions/userAction";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getAllUsers, getUserDetails } from "../../store/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../../components/container/Container";
 import { useAlert } from "react-alert";
 import "./__userDetails.scss";
+import axios from "axios";
 
 const UserDetails = () => {
   const alert = useAlert();
+  let navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const usersRequest = useSelector((state) => state.usersRequest);
+  const { token } = useSelector((state) => state.user);
   const { loading, error, user } = useSelector((state) => state.userDetails);
-  const approveHandler = (id, number) => {
-    dispatch(updateUserRole(id, { number: number, role: "alumni" }));
+  const [loader, setLoader] = useState(false);
+
+  const approveHandler = async (id, number) => {
+    setLoader(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/admin/user/${id}`,
+        { number: number, role: "alumni" },
+        config
+      );
+      dispatch(getAllUsers());
+      setLoader(false);
+      navigate("/admin/all-requests");
+    } catch (error) {
+      alert.error(error.response.data.message || "Something went wrong.");
+      setLoader(false);
+    }
+    dispatch(getAllUsers());
+
+    //sending sms
+    // const greenwebsms = new URLSearchParams();
+    // greenwebsms.append(
+    //   "token",
+    //   "8229165538165745053879f2e330f24bc412f612809d26591919"
+    // );
+    // greenwebsms.append("to", `+8801753210017`);
+    // greenwebsms.append(
+    //   "message",
+    //   `চুয়েট অ্যালুমনাই এ নিবন্ধনের জন্য আপনার ওটিপি (OTP) কোড: 617537`
+    // );
+    // axios
+    //   .post("http://api.greenweb.com.bd/api.php", greenwebsms)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   });
   };
   useEffect(() => {
     if (error) {
@@ -33,7 +74,7 @@ const UserDetails = () => {
           width={232}
           height={232}
           style={{ objectFit: "cover", borderRadius: "10px" }}
-          src={user?.avatar}
+          src={user?.avatar?.url}
           alt=""
         />
       </section>
@@ -92,24 +133,28 @@ const UserDetails = () => {
           <hr />
         </div>
       </section>
-      <div
-        onClick={() => {
-          approveHandler(user?._id, user?.number);
-        }}
-        style={{
-          background: "#05be71",
-          border: "none",
-          width: "100%",
-          maxWidth: "800px",
-          margin: "0 auto",
-          textAlign: "center",
-          padding: "12px 0",
-          marginTop: "2rem",
-          color: "#fff",
-          borderRadius: "10px",
-        }}
-      >
-        {usersRequest?.loading ? "Load..." : "Approve"}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          onClick={() => {
+            approveHandler(user?._id, user?.number);
+          }}
+          style={{
+            background: loader ? "gray" : "#05be71",
+            border: "none",
+            width: "100%",
+            maxWidth: "800px",
+            margin: "0 auto",
+            textAlign: "center",
+            padding: "12px 0",
+            marginTop: "2rem",
+            color: "#fff",
+            borderRadius: "10px",
+            cursor: "pointer",
+          }}
+          disabled={loader ? true : false}
+        >
+          {loader ? "Loading..." : "Approve"}
+        </button>
       </div>
       <div style={{ paddingBottom: "7rem" }} />
     </Container>

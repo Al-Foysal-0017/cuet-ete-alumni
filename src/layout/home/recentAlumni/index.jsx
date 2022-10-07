@@ -42,7 +42,7 @@ const RecentJobs = () => {
                       className="recentJobHome__cards__img"
                       width={124}
                       height={124}
-                      src={item?.avatar}
+                      src={item?.avatar?.url}
                       alt=""
                     />
                   </div>

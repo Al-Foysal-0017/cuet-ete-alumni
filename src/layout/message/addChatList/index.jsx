@@ -45,7 +45,7 @@ const AddChatList = ({
           className="messages__left__img"
           width={84}
           height={84}
-          src={item?.avatar}
+          src={item?.avatar?.url}
           alt=""
         />
         <div className="messages__left__txt">

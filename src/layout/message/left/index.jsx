@@ -28,7 +28,7 @@ const MessageLeft = ({ data, currentChat }) => {
         className="messages__left__img"
         width={84}
         height={84}
-        src={userData?.avatar}
+        src={userData?.avatar?.url}
         alt=""
       />
       <div className="messages__left__txt">

@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { BsPencil } from "react-icons/bs";
 import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
-import ImagePicker from "../../components/imagePicker";
 import Title from "../../components/title";
 import { SET_TOKEN } from "../../store/types/userConstants";
 
@@ -12,11 +12,7 @@ const UpdateProfile = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { user, token } = useSelector((state) => state.user);
-
-  const [initialImage, setImageSrc] = useState("");
-  const [loaderImg, setLoaderImg] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showUpdateProfBtn, setUpdateProfBtn] = useState(false);
 
   const [email, setEmail] = useState(user?.email);
   const [previous_working_position, setPrevWorkingPosition] = useState(
@@ -34,38 +30,36 @@ const UpdateProfile = () => {
   );
   const [facebook_link, setFacebookLink] = useState(user?.facebook_link);
   const [linkedin_link, setLinkedinLink] = useState(user?.linkedin_link);
+  const [selectedFile, setSelectedFile] = useState();
+  const [tempFile, setTempFile] = useState(null);
 
-  const imageUpload = async () => {
-    setLoaderImg(true);
-    const data = new FormData();
-    data.append("file", initialImage);
-    data.append("upload_preset", process.env.REACT_APP_PRESET_AVATARS);
-    data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-    data.append("folder", "avatars");
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const resImage = await res.json();
-    setLoaderImg(false);
-    return resImage.url;
+  const onImageChange = (e) => {
+    e.persist();
+    const fileURL = e.target.files[0];
+    setSelectedFile(fileURL);
+
+    if (fileURL) {
+      setTempFile(URL.createObjectURL(fileURL));
+    }
+  };
+
+  const imagePickRef = React.useRef(null);
+
+  const choseImage = () => {
+    if (imagePickRef.current) {
+      imagePickRef.current.click();
+    }
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const avatar = await imageUpload();
-
     const myForm = {
       email,
       batch,
       graduation_year,
       blood,
-      avatar,
+      avatar: selectedFile,
       previous_working_position,
       present_working_position,
       country,
@@ -77,6 +71,7 @@ const UpdateProfile = () => {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
       };
 
@@ -110,38 +105,61 @@ const UpdateProfile = () => {
               alignItems: "center",
             }}
           >
-            {showUpdateProfBtn ? (
-              <ImagePicker
-                initialImage={initialImage}
-                setImageSrc={setImageSrc}
-              />
-            ) : (
-              <div>
+            <input
+              onChange={onImageChange}
+              ref={imagePickRef}
+              type="file"
+              accept="images/*"
+              hidden
+            />
+            <div className="imgContainer">
+              {!tempFile && (
                 <img
-                  style={{ objectFit: "cover", borderRadius: "8px" }}
-                  width={148}
-                  height={148}
-                  src={user?.avatar}
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={choseImage}
                   alt=""
+                  className="contactPicture"
+                  src={user?.avatar?.url}
                 />
+              )}
+              {tempFile && (
+                <img
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={choseImage}
+                  alt=""
+                  className="contactPicture"
+                  src={tempFile}
+                />
+              )}
+              <div
+                style={{
+                  fontSize: "12px",
+                  background: "#05BE71",
+                  color: "#fff",
+                  padding: "8px 0",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                }}
+                className="imgIcon"
+                onClick={choseImage}
+              >
+                <BsPencil style={{ cursor: "pointer" }} />
+                Change Picture
               </div>
-            )}
-            <div
-              onClick={() => {
-                setUpdateProfBtn(!showUpdateProfBtn);
-              }}
-              style={{
-                cursor: "pointer",
-                marginTop: "6px",
-                borderRadius: "8px",
-                fontSize: "15px",
-                padding: "8px 16px",
-                background: !showUpdateProfBtn ? "#05BE71" : "tomato",
-                color: "#fff",
-              }}
-              className="signUp__input__P"
-            >
-              {!showUpdateProfBtn ? "Change Picture" : "Cancel Update"}
             </div>
           </div>
           <div
@@ -388,7 +406,7 @@ const UpdateProfile = () => {
               cursor: "pointer",
               color: "#fff",
             }}
-            value={loaderImg || loading ? "Loading..." : "Update"}
+            value={loading ? "Loading..." : "Update"}
             className="signUp__input"
             type="submit"
           />

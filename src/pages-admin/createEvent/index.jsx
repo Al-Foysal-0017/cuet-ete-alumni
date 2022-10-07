@@ -14,7 +14,6 @@ const CreateEvent = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { token } = useSelector((state) => state.user);
-  // const { loading } = useSelector((state) => state.stories);
   const [loader, setLoader] = useState(false);
 
   const [initialImage, setImageSrc] = useState("");
@@ -146,7 +145,7 @@ const CreateEvent = () => {
               <input
                 className="signUp__input"
                 type="text"
-                placeholder="Subtitle..."
+                placeholder="Ex- CUET Computer Club"
                 name="organized_by"
                 value={organized_by}
                 onChange={createStoryDataChange}
@@ -156,7 +155,7 @@ const CreateEvent = () => {
               <label>Media</label>
               <input
                 className="signUp__input"
-                placeholder="Media..."
+                placeholder="Ex- Zoom"
                 name="media"
                 value={media}
                 onChange={createStoryDataChange}
@@ -166,7 +165,7 @@ const CreateEvent = () => {
               <label>Date</label>
               <input
                 className="signUp__input"
-                placeholder="Date..."
+                placeholder="Ex- 27"
                 name="date"
                 value={date}
                 onChange={createStoryDataChange}
@@ -176,7 +175,7 @@ const CreateEvent = () => {
               <label>Month</label>
               <input
                 className="signUp__input"
-                placeholder="Month..."
+                placeholder="Ex- January"
                 name="month"
                 value={month}
                 onChange={createStoryDataChange}
@@ -186,7 +185,7 @@ const CreateEvent = () => {
               <label>Year</label>
               <input
                 className="signUp__input"
-                placeholder="Year..."
+                placeholder="Ex- 2022"
                 name="year"
                 value={year}
                 onChange={createStoryDataChange}
@@ -196,7 +195,7 @@ const CreateEvent = () => {
               <label>Particular Date</label>
               <input
                 className="signUp__input"
-                placeholder="Particular Date..."
+                placeholder="Ex- 20 January 2022"
                 name="particular_date"
                 value={particular_date}
                 onChange={createStoryDataChange}
@@ -227,7 +226,6 @@ const CreateEvent = () => {
           </form>
         </Container>
       </div>
-      {/* )} */}
     </Navigation>
   );
 };

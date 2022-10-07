@@ -75,7 +75,7 @@ const MessageRight = ({
         <div className="messages__right__top">
           <img
             className="messages__right__top__img"
-            src={userData?.avatar}
+            src={userData?.avatar?.url}
             alt=""
           />
           <div className="messages__right__top__name">
@@ -95,7 +95,7 @@ const MessageRight = ({
                       <div className="messages__right__center__frdMsg__contr">
                         <img
                           className="messages__right__center__frdMsg__img"
-                          src={userData?.avatar}
+                          src={userData?.avatar?.url}
                           alt=""
                         />
                         <div className="messages__right__center__frdMsg__msg">

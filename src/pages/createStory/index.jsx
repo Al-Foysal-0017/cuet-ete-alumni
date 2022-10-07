@@ -12,7 +12,7 @@ const CreateStory = () => {
   let navigate = useNavigate();
   const { loading } = useSelector((state) => state.stories);
   const { user } = useSelector((state) => state.user);
-  const userImg = user?.avatar;
+  const userImg = user?.avatar?.url;
 
   const [initialImage, setImageSrc] = useState("");
   const [loaderImg, setLoaderImg] = useState(false);

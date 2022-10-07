@@ -32,7 +32,7 @@ const MobileNav = () => {
                   Admin Panel
                   <img
                     className="navbarTopItem-avatar"
-                    src={user?.avatar}
+                    src={user?.avatar?.url}
                     alt=""
                   />
                 </Link>
@@ -51,7 +51,7 @@ const MobileNav = () => {
                   {user?.firstName + " " + user?.lastName}
                   <img
                     className="navbarTopItem-avatar"
-                    src={user?.avatar}
+                    src={user?.avatar?.url}
                     alt=""
                   />
                 </Link>

@@ -55,7 +55,7 @@ const CommunityDetails = () => {
               <div className="communityDetails__box" key={index}>
                 <img
                   className="communityDetails__img"
-                  src={item?.avatar}
+                  src={item?.avatar?.url}
                   alt=""
                 />
                 <div className="communityDetails__box__right">

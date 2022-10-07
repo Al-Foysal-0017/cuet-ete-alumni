@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers, updateUserRole } from "../../store/actions/userAction";
+import { getAllUsers } from "../../store/actions/userAction";
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 
@@ -13,28 +13,6 @@ const Table = ({ users }) => {
   const [filterUsers, setFilterUsers] = useState(users);
   const { token } = useSelector((state) => state.user);
   const { loading } = useSelector((state) => state.usersRequest);
-
-  const approveHandler = (id, number) => {
-    dispatch(updateUserRole(id, { number: number, role: "alumni" }));
-    dispatch(getAllUsers());
-
-    //sending sms
-    // const greenwebsms = new URLSearchParams();
-    // greenwebsms.append(
-    //   "token",
-    //   "8229165538165745053879f2e330f24bc412f612809d26591919"
-    // );
-    // greenwebsms.append("to", `+8801753210017`);
-    // greenwebsms.append(
-    //   "message",
-    //   `চুয়েট অ্যালুমনাই এ নিবন্ধনের জন্য আপনার ওটিপি (OTP) কোড: 617537`
-    // );
-    // axios
-    //   .post("http://api.greenweb.com.bd/api.php", greenwebsms)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   });
-  };
 
   const deleteHandler = async (id, number) => {
     try {
@@ -58,7 +36,9 @@ const Table = ({ users }) => {
   const columns = [
     {
       name: "Image",
-      selector: (row) => <img src={row.avatar} alt="" width={80} height={80} />,
+      selector: (row) => (
+        <img src={row.avatar?.url} alt="" width={80} height={80} />
+      ),
     },
     {
       name: "Name",
@@ -87,17 +67,8 @@ const Table = ({ users }) => {
         <>
           <button className="tableButton">
             <Link to={`/admin/user/details/${row._id}`}>
-              {loading ? "Load..." : "Details"}
+              {loading ? "Load..." : "Details & Approve"}
             </Link>
-          </button>
-          <button
-            onClick={() => {
-              approveHandler(row._id, row.number);
-            }}
-            style={{ background: "green" }}
-            className="tableButton"
-          >
-            {loading ? "Load..." : "Approve"}
           </button>
           <button
             onClick={() => deleteHandler(row._id)}

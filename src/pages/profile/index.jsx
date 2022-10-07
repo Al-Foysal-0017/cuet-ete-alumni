@@ -42,7 +42,11 @@ const Profile = () => {
           <section className="profile">
             {/* LEFT */}
             <div className="profile__left">
-              <img style={{ objectFit: "cover" }} src={user.avatar} alt="" />
+              <img
+                style={{ objectFit: "cover" }}
+                src={user.avatar?.url}
+                alt=""
+              />
               <div>
                 <div className="profile__right__top__name">
                   <span>{user.firstName}</span>
