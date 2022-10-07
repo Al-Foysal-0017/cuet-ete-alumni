@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -5,12 +6,16 @@ import Navigation from "../../components/adminNabSidebar/Navigation";
 import Container from "../../components/container/Container";
 import ImagePicker from "../../components/imagePicker";
 import Title from "../../components/title";
-import { eventCreate } from "../../store/actions/eventAction";
+import { getAllEvents } from "../../store/actions/eventAction";
+import { useAlert } from "react-alert";
 
 const CreateEvent = () => {
+  const alert = useAlert();
   const dispatch = useDispatch();
   let navigate = useNavigate();
-  const { loading } = useSelector((state) => state.stories);
+  const { token } = useSelector((state) => state.user);
+  // const { loading } = useSelector((state) => state.stories);
+  const [loader, setLoader] = useState(false);
 
   const [initialImage, setImageSrc] = useState("");
   const [loaderImg, setLoaderImg] = useState(false);
@@ -34,17 +39,16 @@ const CreateEvent = () => {
     setLoaderImg(true);
     const data = new FormData();
     data.append("file", initialImage);
-    data.append("upload_preset", "mystore");
-    data.append("cloud_name", "dxfttihmd");
+    data.append("upload_preset", process.env.REACT_APP_PRESET_EVENTS);
+    data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dxfttihmd/image/upload",
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
       {
         method: "POST",
         body: data,
       }
     );
     const resImage = await res.json();
-    // console.log("RETURN URL:>>>", resImage.url);
     setLoaderImg(false);
     return resImage.url;
   };
@@ -62,6 +66,7 @@ const CreateEvent = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    setLoader(true);
 
     const img = await imageUpload();
 
@@ -76,9 +81,29 @@ const CreateEvent = () => {
       desc,
       img,
     };
-    console.log("CREATEEVENT:>>>", myForm);
-    dispatch(eventCreate(myForm));
-    navigate("/admin/all-events");
+    // console.log("CREATEEVENT:>>>", myForm);
+    // dispatch(eventCreate(myForm));
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/admin/create/event`,
+        myForm,
+        config
+      );
+      dispatch(getAllEvents());
+      setLoader(false);
+      navigate("/admin/all-events");
+    } catch (error) {
+      console.log(error.response);
+      setLoader(false);
+      alert.error("Something went wrong.");
+    }
   };
   return (
     <Navigation>
@@ -195,7 +220,7 @@ const CreateEvent = () => {
                 cursor: "pointer",
                 color: "#fff",
               }}
-              value={loading || loaderImg ? "Loading..." : "Create"}
+              value={loader || loaderImg ? "Loading..." : "Create"}
               className="signUp__input"
               type="submit"
             />

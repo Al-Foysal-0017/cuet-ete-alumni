@@ -18,7 +18,7 @@ const Topbar = ({ sideNavOpen, setSideNavOpen }) => {
           <div className="HeaderWrapper">
             {/* Search Box*/}
             <Link to="/admin/dashboard" className="adminTopbarLogo">
-              <span style={{ color: "#05be71" }}>CUET</span>{" "}
+              <span style={{ color: "#05be71" }}>ETE</span>{" "}
               <span style={{ color: "#bababa", padding: "0 8px" }}>|</span>{" "}
               <span className="">ALUMNI</span>
             </Link>

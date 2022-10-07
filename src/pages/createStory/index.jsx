@@ -32,10 +32,10 @@ const CreateStory = () => {
     setLoaderImg(true);
     const data = new FormData();
     data.append("file", initialImage);
-    data.append("upload_preset", "mystore");
-    data.append("cloud_name", "dxfttihmd");
+    data.append("upload_preset", process.env.REACT_APP_PRESET_STORIES);
+    data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dxfttihmd/image/upload",
+      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
       {
         method: "POST",
         body: data,

@@ -1,10 +1,40 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAllEvents } from "../../store/actions/eventAction";
+import { useAlert } from "react-alert";
 
 const Table = ({ events }) => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [filterEvents, setFilterEvents] = useState(events);
+  const { token } = useSelector((state) => state.user);
+  const [deleteLoader, setDeleteLoader] = useState(false);
+
+  const deleteHandler = async (id) => {
+    setDeleteLoader(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/admin/event/${id}`,
+        config
+      );
+      alert.success(data.message);
+      dispatch(getAllEvents());
+      setDeleteLoader(false);
+    } catch (error) {
+      alert.error(error.response.data.message || "Something went wrong.");
+      setDeleteLoader(false);
+    }
+  };
 
   const columns = [
     {
@@ -26,8 +56,12 @@ const Table = ({ events }) => {
           <button className="tableButton">
             <Link to={`/admin/event/details/${row?._id}`}>Details</Link>
           </button>
-          <button style={{ background: "tomato" }} className="tableButton">
-            Delete
+          <button
+            onClick={() => deleteHandler(row._id)}
+            style={{ background: "tomato" }}
+            className="tableButton"
+          >
+            {deleteLoader ? "Loading.." : "Delete"}
           </button>
         </>
       ),

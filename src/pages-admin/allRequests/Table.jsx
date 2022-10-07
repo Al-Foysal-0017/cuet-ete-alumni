@@ -12,11 +12,28 @@ const Table = ({ users }) => {
   const [search, setSearch] = useState("");
   const [filterUsers, setFilterUsers] = useState(users);
   const { token } = useSelector((state) => state.user);
-
   const { loading } = useSelector((state) => state.usersRequest);
 
   const approveHandler = (id, number) => {
     dispatch(updateUserRole(id, { number: number, role: "alumni" }));
+    dispatch(getAllUsers());
+
+    //sending sms
+    // const greenwebsms = new URLSearchParams();
+    // greenwebsms.append(
+    //   "token",
+    //   "8229165538165745053879f2e330f24bc412f612809d26591919"
+    // );
+    // greenwebsms.append("to", `+8801753210017`);
+    // greenwebsms.append(
+    //   "message",
+    //   `চুয়েট অ্যালুমনাই এ নিবন্ধনের জন্য আপনার ওটিপি (OTP) কোড: 617537`
+    // );
+    // axios
+    //   .post("http://api.greenweb.com.bd/api.php", greenwebsms)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   });
   };
 
   const deleteHandler = async (id, number) => {

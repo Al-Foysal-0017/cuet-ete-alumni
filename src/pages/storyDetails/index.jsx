@@ -69,6 +69,13 @@ const StoryDetails = () => {
             </Link>
             <img className="storyDetails__banner" src={story?.img} alt="" />
 
+            {/* {user?._id === story.userId && (
+              <div>
+                <div>Update Story</div>
+                <div>Delete Story</div>
+              </div>
+            )} */}
+
             <div className="storyDetails__content">
               <div className="storyDetails__content__title">{story?.title}</div>
               <div className="storyDetails__content__organized">
