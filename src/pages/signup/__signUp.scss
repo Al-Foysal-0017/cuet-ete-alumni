@@ -58,3 +58,24 @@
   justify-content: center;
   color: white;
 }
+
+.buttonContainerSetProfile {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 800px;
+}
+
+.widthSet {
+  width: 48%;
+}
+
+@media (max-width: 648px) {
+  .buttonContainerSetProfile {
+    display: flex;
+    flex-direction: column;
+  }
+  .widthSet {
+    width: 100%;
+  }
+}

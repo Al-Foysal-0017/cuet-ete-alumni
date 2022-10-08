@@ -41,7 +41,7 @@ const Profile = () => {
         <Container>
           <section className="profile">
             {/* LEFT */}
-            <div className="profile__left">
+            <section className="profile__left">
               <img
                 style={{ objectFit: "cover" }}
                 src={user.avatar?.url}
@@ -139,8 +139,8 @@ const Profile = () => {
                 </div>
                 <hr />
               </section>
-            </div>
-            <section className="">
+            </section>
+            <section className="allStoriesInProfContianer">
               <Title>My Stories</Title>
               <section className="createStoryLinkBoxInProfile">
                 <div className="createStoryLinkBox__ques">

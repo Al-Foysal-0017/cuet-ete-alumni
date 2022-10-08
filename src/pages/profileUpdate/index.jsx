@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { BsPencil } from "react-icons/bs";
 import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
 import Title from "../../components/title";
@@ -30,7 +29,7 @@ const UpdateProfile = () => {
   );
   const [facebook_link, setFacebookLink] = useState(user?.facebook_link);
   const [linkedin_link, setLinkedinLink] = useState(user?.linkedin_link);
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState("");
   const [tempFile, setTempFile] = useState(null);
 
   const onImageChange = (e) => {
@@ -146,7 +145,7 @@ const UpdateProfile = () => {
               <div
                 style={{
                   fontSize: "12px",
-                  background: "#05BE71",
+                  background: "gray",
                   color: "#fff",
                   padding: "8px 0",
                   textAlign: "center",
@@ -157,8 +156,7 @@ const UpdateProfile = () => {
                 className="imgIcon"
                 onClick={choseImage}
               >
-                <BsPencil style={{ cursor: "pointer" }} />
-                Change Picture
+                Choose new photo
               </div>
             </div>
           </div>

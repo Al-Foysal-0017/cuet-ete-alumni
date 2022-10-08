@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import Container from "../../components/container/Container";
-import ImagePicker from "../../components/imagePicker";
 import Title from "../../components/title";
 import { clearErrors, getAllUsers } from "../../store/actions/userAction";
 import Footer from "../../components/footer";
@@ -15,10 +14,6 @@ const SetProfile = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { user, token } = useSelector((state) => state.user);
-
-  const [initialImage, setImageSrc] = useState("");
-  const [loaderImg, setLoaderImg] = useState(false);
-
   const [email, setEmail] = useState("");
   const [previous_working_position, setPrevWorkingPosition] = useState("");
   const [present_working_position, setPresentvWorkingPosition] = useState("");
@@ -33,33 +28,30 @@ const SetProfile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const imageUpload = async () => {
-    try {
-      setLoaderImg(true);
-      const data = new FormData();
-      data.append("file", initialImage);
-      data.append("upload_preset", process.env.REACT_APP_PRESET_AVATARS);
-      data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-      const res = await fetch(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-        {
-          method: "POST",
-          body: data,
-        }
-      );
-      const resImage = await res.json();
-      setLoaderImg(false);
-      return resImage.url;
-    } catch (er) {
-      console.log(er);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [tempFile, setTempFile] = useState(null);
+
+  const onImageChange = (e) => {
+    e.persist();
+    const fileURL = e.target.files[0];
+    setSelectedFile(fileURL);
+
+    if (fileURL) {
+      setTempFile(URL.createObjectURL(fileURL));
+    }
+  };
+
+  const imagePickRef = React.useRef(null);
+
+  const choseImage = () => {
+    if (imagePickRef.current) {
+      imagePickRef.current.click();
     }
   };
 
   const handleClick = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    const avatar = await imageUpload();
 
     const myForm = {
       email: email || user?.email,
@@ -72,7 +64,7 @@ const SetProfile = () => {
       graduation_year: graduation_year || user?.graduation_year,
       blood: blood || user?.blood,
       country: country || user?.country,
-      avatar,
+      avatar: selectedFile,
       facebook_link: facebook_link || user?.facebook_link,
       linkedin_link: linkedin_link || user?.linkedin_link,
     };
@@ -80,6 +72,7 @@ const SetProfile = () => {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
       };
 
@@ -95,9 +88,9 @@ const SetProfile = () => {
       navigate("/profile");
       setLoading(false);
     } catch (error) {
+      console.log(error);
       setError("Something went wrong. Try again.");
       setLoading(false);
-      setLoaderImg(false);
     }
   };
 
@@ -135,10 +128,10 @@ const SetProfile = () => {
               .
             </label>
             <label style={{ textAlign: "center" }}>
-              It almost finished.Please fill up these information.It might be
-              help you and your cuet ete dept batchmate, junior or senior to
-              create a strong bonding. By the way, if you are busy at present
-              than you can skip it now and set it later.
+              It almost done.Please fill up these information.It might be help
+              you and your cuet ete dept batchmate, junior or senior to create a
+              strong bonding. By the way, if you are busy at present than you
+              can skip it and set it later.
             </label>
           </div>
           <div
@@ -149,15 +142,60 @@ const SetProfile = () => {
               alignItems: "center",
             }}
           >
-            <ImagePicker
-              initialImage={initialImage}
-              setImageSrc={setImageSrc}
+            <input
+              onChange={onImageChange}
+              ref={imagePickRef}
+              type="file"
+              accept="images/*"
+              hidden
             />
-            <div
-              style={{ fontSize: "12px", paddingTop: "5px" }}
-              className="signUp__input__P"
-            >
-              Choose profile picture
+            <div className="imgContainer" style={{ marginBottom: "1.5rem" }}>
+              {!tempFile && (
+                <img
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={choseImage}
+                  alt=""
+                  className="contactPicture"
+                  src={user?.avatar?.url}
+                />
+              )}
+              {tempFile && (
+                <img
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={choseImage}
+                  alt=""
+                  className="contactPicture"
+                  src={tempFile}
+                />
+              )}
+              <div
+                style={{
+                  fontSize: "12px",
+                  background: "gray",
+                  color: "#fff",
+                  padding: "8px 0",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                }}
+                className="imgIcon"
+                onClick={choseImage}
+              >
+                Choose a photo
+              </div>
             </div>
           </div>
           <div
@@ -402,24 +440,17 @@ const SetProfile = () => {
               }}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-between",
-              maxWidth: "800px",
-            }}
-          >
-            <Link to="/profile">
+          <div className="buttonContainerSetProfile">
+            <Link className="widthSet" to="/profile">
               <input
                 style={{
                   background: "tomato",
                   border: "1px solid tomato",
                   cursor: "pointer",
                   color: "#fff",
-                  width: "45%",
+                  textAlign: "center",
                 }}
-                value="Skip"
+                value="Skip, I want to set it later."
                 className="signUp__input"
               />
             </Link>
@@ -429,10 +460,9 @@ const SetProfile = () => {
                 border: "1px solid #05be71",
                 cursor: "pointer",
                 color: "#fff",
-                width: "45%",
               }}
-              value={loading || loaderImg ? "Loading..." : "Update"}
-              className="signUp__input"
+              value={loading ? "Loading..." : "Update"}
+              className="signUp__input widthSet"
               type="submit"
             />
           </div>

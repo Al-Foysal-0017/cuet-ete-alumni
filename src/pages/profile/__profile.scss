@@ -8,6 +8,7 @@
     padding-right: 1rem;
     display: flex;
     flex-direction: column;
+    width: 48%;
 
     img {
       width: 250px;
@@ -62,6 +63,10 @@
       }
     }
   }
+}
+
+.allStoriesInProfContianer {
+  width: 48%;
 }
 
 .profileDetails {
@@ -177,8 +182,12 @@
 }
 
 @media (max-width: 740px) {
+  .allStoriesInProfContianer {
+    width: 100%;
+  }
   .profile {
     &__left {
+      width: 100%;
       img {
         width: 180px;
         height: 180px;
