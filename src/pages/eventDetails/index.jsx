@@ -28,7 +28,11 @@ const EventDetails = () => {
               </div>
               <span>{moment(event?.createdAt).format("MMM Do YY")}</span>
             </div>
-            <img className="storyDetails__banner" src={event?.img} alt="" />
+            <img
+              className="storyDetails__banner"
+              src={event?.img?.url}
+              alt=""
+            />
 
             <div className="storyDetails__content">
               <div className="storyDetails__content__title">{event?.title}</div>

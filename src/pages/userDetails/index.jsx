@@ -134,7 +134,7 @@ const Profile = () => {
                 <hr />
               </section>
             </div>
-            <section className="">
+            <section className="allStoriesInProfContianer">
               <Title>{user?.lastName}'s Stories</Title>
 
               {aUserStories?.stories?.length === 0 && (

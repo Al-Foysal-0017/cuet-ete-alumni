@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../components/adminNabSidebar/Navigation";
 import Container from "../../components/container/Container";
-import ImagePicker from "../../components/imagePicker";
 import Title from "../../components/title";
 import { getAllEvents } from "../../store/actions/eventAction";
 import { useAlert } from "react-alert";
@@ -14,10 +13,8 @@ const CreateEvent = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const { token } = useSelector((state) => state.user);
-  const [loader, setLoader] = useState(false);
 
-  const [initialImage, setImageSrc] = useState("");
-  const [loaderImg, setLoaderImg] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [createStory, setCreateStory] = useState({
     date: "",
@@ -30,26 +27,29 @@ const CreateEvent = () => {
     desc: "",
   });
 
-  const createStoryDataChange = (e) => {
-    setCreateStory({ ...createStory, [e.target.name]: e.target.value });
+  const [selectedFile, setSelectedFile] = useState("");
+  const [tempFile, setTempFile] = useState(null);
+  console.log("selectedFile:>>", selectedFile);
+
+  const onImageChange = (e) => {
+    e.persist();
+    const fileURL = e.target.files[0];
+    setSelectedFile(fileURL);
+
+    if (fileURL) {
+      setTempFile(URL.createObjectURL(fileURL));
+    }
   };
 
-  const imageUpload = async () => {
-    setLoaderImg(true);
-    const data = new FormData();
-    data.append("file", initialImage);
-    data.append("upload_preset", process.env.REACT_APP_PRESET_EVENTS);
-    data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const resImage = await res.json();
-    setLoaderImg(false);
-    return resImage.url;
+  const imagePickRef = React.useRef(null);
+
+  const choseImage = () => {
+    if (imagePickRef.current) {
+      imagePickRef.current.click();
+    }
+  };
+  const createStoryDataChange = (e) => {
+    setCreateStory({ ...createStory, [e.target.name]: e.target.value });
   };
 
   const {
@@ -65,9 +65,7 @@ const CreateEvent = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    setLoader(true);
-
-    const img = await imageUpload();
+    setLoading(true);
 
     const myForm = {
       date,
@@ -78,16 +76,14 @@ const CreateEvent = () => {
       organized_by,
       title,
       desc,
-      img,
+      img: selectedFile,
     };
-    // console.log("CREATEEVENT:>>>", myForm);
-    // dispatch(eventCreate(myForm));
 
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       };
       await axios.post(
@@ -96,12 +92,12 @@ const CreateEvent = () => {
         config
       );
       dispatch(getAllEvents());
-      setLoader(false);
+      setLoading(false);
       navigate("/admin/all-events");
     } catch (error) {
       console.log(error.response);
-      setLoader(false);
       alert.error("Something went wrong.");
+      setLoading(false);
     }
   };
   return (
@@ -111,7 +107,7 @@ const CreateEvent = () => {
         <Container className="signUp">
           <form onSubmit={handleClick} className="signUp__form">
             <Title className="signUp__form__title">Create Event</Title>
-            <div
+            {/* <div
               className="signUp__input"
               style={{
                 display: "flex",
@@ -128,6 +124,74 @@ const CreateEvent = () => {
                 className="signUp__input__P"
               >
                 Thumbnail Image
+              </div>
+            </div> */}
+            <div
+              className="signUp__input"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <input
+                onChange={onImageChange}
+                ref={imagePickRef}
+                type="file"
+                accept="images/*"
+                hidden
+              />
+              <div className="imgContainer">
+                {!tempFile && (
+                  <div
+                    style={{
+                      width: "200px",
+                      height: "140px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                      border: "1px solid gray",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    onClick={choseImage}
+                  >
+                    Choose img
+                  </div>
+                )}
+                {tempFile && (
+                  <img
+                    style={{
+                      width: "200px",
+                      height: "140px",
+                      objectFit: "cover",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                    }}
+                    onClick={choseImage}
+                    alt=""
+                    className="contactPicture"
+                    src={tempFile}
+                  />
+                )}
+                <div
+                  style={{
+                    fontSize: "12px",
+                    background: "gray",
+                    color: "#fff",
+                    padding: "8px 0",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    borderRadius: "8px",
+                    fontWeight: "600",
+                    marginTop: "8px",
+                  }}
+                  className="imgIcon"
+                  onClick={choseImage}
+                >
+                  Choose img
+                </div>
               </div>
             </div>
             <div className="inputBox">
@@ -219,9 +283,10 @@ const CreateEvent = () => {
                 cursor: "pointer",
                 color: "#fff",
               }}
-              value={loader || loaderImg ? "Loading..." : "Create"}
+              value={loading ? "Loading..." : "Create"}
               className="signUp__input"
               type="submit"
+              disabled={loading ? true : false}
             />
           </form>
         </Container>

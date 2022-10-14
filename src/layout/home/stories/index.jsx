@@ -46,7 +46,7 @@ const StoriesHome = () => {
               <Link to={`/story/details/${item._id}`}>
                 <img
                   className="storiesHome__cards__item__img"
-                  src={item.img}
+                  src={item?.img?.url}
                   alt=""
                 />
               </Link>

@@ -67,7 +67,11 @@ const StoryDetails = () => {
                 </div>
               </div>
             </Link>
-            <img className="storyDetails__banner" src={story?.img} alt="" />
+            <img
+              className="storyDetails__banner"
+              src={story?.img?.url}
+              alt=""
+            />
 
             {/* {user?._id === story.userId && (
               <div>

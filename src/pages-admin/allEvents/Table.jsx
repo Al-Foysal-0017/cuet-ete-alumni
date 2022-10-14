@@ -39,7 +39,9 @@ const Table = ({ events }) => {
   const columns = [
     {
       name: "Image",
-      selector: (row) => <img src={row.img} alt="" width={180} height={80} />,
+      selector: (row) => (
+        <img src={row.img?.url} alt="" width={180} height={80} />
+      ),
     },
     {
       name: "Title",

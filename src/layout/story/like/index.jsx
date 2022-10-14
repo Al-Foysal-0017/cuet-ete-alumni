@@ -92,7 +92,7 @@ const LikeStory = ({ item, index }) => {
               style={{ objectFit: "cover", borderRadius: "10px" }}
               width={"100%"}
               height={200}
-              src={item?.img}
+              src={item?.img?.url}
               alt=""
             />
           </Link>

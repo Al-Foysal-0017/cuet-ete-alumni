@@ -203,7 +203,7 @@ const Profile = () => {
 
                         <img
                           className="profile__story__img2"
-                          src={item?.img}
+                          src={item?.img?.url}
                           alt=""
                         />
                         <div>

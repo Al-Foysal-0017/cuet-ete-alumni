@@ -1,21 +1,18 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
-import ImagePicker from "../../components/imagePicker";
 import Title from "../../components/title";
-import { storyCreate } from "../../store/actions/storyAction";
+import { useAlert } from "react-alert";
 
 const CreateStory = () => {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
-  const { loading } = useSelector((state) => state.stories);
-  const { user } = useSelector((state) => state.user);
+  const alert = useAlert();
+  const { user, token } = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
   const userImg = user?.avatar?.url;
-
-  const [initialImage, setImageSrc] = useState("");
-  const [loaderImg, setLoaderImg] = useState(false);
 
   const [createStory, setCreateStory] = useState({
     title: "",
@@ -24,46 +21,68 @@ const CreateStory = () => {
     userName: user?.firstName + " " + user?.lastName,
   });
 
-  const createStoryDataChange = (e) => {
-    setCreateStory({ ...createStory, [e.target.name]: e.target.value });
+  const [selectedFile, setSelectedFile] = useState("");
+  const [tempFile, setTempFile] = useState(null);
+
+  const onImageChange = (e) => {
+    e.persist();
+    const fileURL = e.target.files[0];
+    setSelectedFile(fileURL);
+
+    if (fileURL) {
+      setTempFile(URL.createObjectURL(fileURL));
+    }
   };
 
-  const imageUpload = async () => {
-    setLoaderImg(true);
-    const data = new FormData();
-    data.append("file", initialImage);
-    data.append("upload_preset", process.env.REACT_APP_PRESET_STORIES);
-    data.append("cloud_name", process.env.REACT_APP_CLOUD_NAME);
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const resImage = await res.json();
-    setLoaderImg(false);
-    return resImage.url;
+  const imagePickRef = React.useRef(null);
+
+  const choseImage = () => {
+    if (imagePickRef.current) {
+      imagePickRef.current.click();
+    }
+  };
+
+  const createStoryDataChange = (e) => {
+    setCreateStory({ ...createStory, [e.target.name]: e.target.value });
   };
 
   const { title, organized_by, desc, userName } = createStory;
 
   const handleClick = async (e) => {
     e.preventDefault();
+    if (!title || !organized_by || !desc || !selectedFile) {
+      alert.error("Please fill up all the fields and img.");
+    }
 
-    const img = await imageUpload();
-
+    setLoading(true);
     const myForm = {
       title,
       organized_by,
       desc,
       userImg,
       userName,
-      img,
+      img: selectedFile,
       userId: user?._id,
     };
-    dispatch(storyCreate(myForm));
-    navigate("/stories");
+
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/create/story`,
+        myForm,
+        config
+      );
+      setLoading(false);
+      navigate("/stories");
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -80,15 +99,64 @@ const CreateStory = () => {
               alignItems: "center",
             }}
           >
-            <ImagePicker
-              initialImage={initialImage}
-              setImageSrc={setImageSrc}
+            <input
+              onChange={onImageChange}
+              ref={imagePickRef}
+              type="file"
+              accept="images/*"
+              hidden
             />
-            <div
-              style={{ fontSize: "12px", paddingTop: "5px" }}
-              className="signUp__input__P"
-            >
-              Thumbnail Image
+            <div className="imgContainer">
+              {!tempFile && (
+                <div
+                  style={{
+                    width: "200px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    border: "1px solid gray",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  onClick={choseImage}
+                >
+                  Choose img
+                </div>
+              )}
+              {tempFile && (
+                <img
+                  style={{
+                    width: "200px",
+                    height: "140px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={choseImage}
+                  alt=""
+                  className="contactPicture"
+                  src={tempFile}
+                />
+              )}
+              <div
+                style={{
+                  fontSize: "12px",
+                  background: "gray",
+                  color: "#fff",
+                  padding: "8px 0",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  borderRadius: "8px",
+                  fontWeight: "600",
+                  marginTop: "8px",
+                }}
+                className="imgIcon"
+                onClick={choseImage}
+              >
+                Choose img
+              </div>
             </div>
           </div>
           <div className="inputBox">
@@ -132,9 +200,10 @@ const CreateStory = () => {
               cursor: "pointer",
               color: "#fff",
             }}
-            value={loading || loaderImg ? "Loading..." : "Create"}
+            value={loading ? "Loading..." : "Create"}
             className="signUp__input"
             type="submit"
+            disabled={loading ? true : false}
           />
         </form>
       </Container>
