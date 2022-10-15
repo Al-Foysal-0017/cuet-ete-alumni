@@ -30,6 +30,7 @@ import SetProfile from "./pages/signup/SetProfile";
 import ToSetProfileRoute from "./components/private/ToSetProfile";
 import UserDetailsAdmin from "./pages-admin/userDetails";
 import UserDetails from "./pages/userDetails";
+import UserDetailsByStudentID from "./pages/userDetailsByStudentID";
 import CreateStory from "./pages/createStory";
 import StoryDetails from "./pages/storyDetails";
 import Alumni from "./pages/alumni";
@@ -162,6 +163,10 @@ const App = () => {
               }
             />
             <Route path="/user/details/:id" element={<UserDetails />} />
+            <Route
+              path="/user/details/student/:id"
+              element={<UserDetailsByStudentID />}
+            />
             <Route
               path="admin/all-requests"
               element={

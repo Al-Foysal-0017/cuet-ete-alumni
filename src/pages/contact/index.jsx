@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAlert } from "react-alert";
+import emailjs from "@emailjs/browser";
 import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
 import "./__contact.scss";
@@ -12,9 +13,8 @@ const Contact = () => {
     email: "",
     desc: "",
   });
-
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleInputs = (e) => {
     setState({
@@ -22,28 +22,54 @@ const Contact = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const form = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (!state.firstName || !state.lastName || !state.email || !state.desc) {
       setError("Please fill up all fields!");
     } else {
-      setSuccess("Your request has been sent successfully!");
+      emailjs
+        .sendForm(
+          process.env.REACT_APP_SERVICE_ID,
+          // process.env.REACT_APP_TEMPLATE_ID,
+          "template_gbefyip",
+          form.current,
+          process.env.REACT_APP_EMAILJS_ID
+        )
+        .then(
+          (result) => {
+            setLoading(false);
+            alert.success("Your request has sent successfully.");
+            setState({
+              firstName: "",
+              lastName: "",
+              email: "",
+              desc: "",
+            });
+            console.log("result:>>", result);
+          },
+          (error) => {
+            setLoading(false);
+            console.log(error);
+            alert.error("Something went wrong! Try again.");
+          }
+        );
     }
   };
 
-  useEffect(() => {
-    if (success) {
-      alert.success(success);
-      setSuccess("");
-      setState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        desc: "",
-      });
-    }
-  }, [alert, success]);
+  // useEffect(() => {
+  //   if (success) {
+  //     alert.success(success);
+  //     setSuccess("");
+  //     setState({
+  //       firstName: "",
+  //       lastName: "",
+  //       email: "",
+  //       desc: "",
+  //     });
+  //   }
+  // }, [alert, success]);
 
   useEffect(() => {
     if (error) {
@@ -59,7 +85,7 @@ const Contact = () => {
       </Container>
 
       <Container>
-        <form className="contactForm" onSubmit={handleSubmit}>
+        <form ref={form} className="contactForm" onSubmit={handleSubmit}>
           <div className="contactFormHeader">Contact Us</div>
           <div style={{ display: "flex" }}>
             <input
@@ -105,6 +131,8 @@ const Contact = () => {
                 borderRadius: "10px",
               }}
               type="submit"
+              value={loading ? "Loading..." : "Submit"}
+              disabled={loading ? true : false}
             />
           </div>
         </form>

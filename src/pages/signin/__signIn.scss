@@ -56,7 +56,8 @@
   color: #05be71;
 }
 
-// @media (max-width: 740px) {
-//   .signInBanner {
-//   }
-// }
+@media (max-width: 740px) {
+  .signInBanner {
+    background-size: auto;
+  }
+}

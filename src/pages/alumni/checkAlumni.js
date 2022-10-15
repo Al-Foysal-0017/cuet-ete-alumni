@@ -1,9 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 const CheckAlumni = ({ studentId }) => {
+  const alert = useAlert();
   const [isPresent, setIsPresent] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const noAccount = (id) => {
+    alert.error(`Currently ID:${id} has no account on this site.`);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -29,13 +36,32 @@ const CheckAlumni = ({ studentId }) => {
       {loading ? (
         <div className="quickView__contr__idLoad">Load...</div>
       ) : (
-        <div
-          className={
-            isPresent ? "quickView__contr__id" : "quickView__contr__idNull"
-          }
-        >
-          {studentId}
-        </div>
+        <>
+          {isPresent ? (
+            <Link to={`/user/details/student/${studentId}`}>
+              <div
+                className={
+                  isPresent
+                    ? "quickView__contr__id"
+                    : "quickView__contr__idNull"
+                }
+              >
+                {studentId}
+              </div>
+            </Link>
+          ) : (
+            <div
+              className={
+                isPresent ? "quickView__contr__id" : "quickView__contr__idNull"
+              }
+              onClick={() => {
+                noAccount(studentId);
+              }}
+            >
+              {studentId}
+            </div>
+          )}
+        </>
       )}
     </>
   );
