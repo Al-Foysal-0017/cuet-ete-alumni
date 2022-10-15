@@ -30,7 +30,6 @@ const AddChatList = ({
         formData,
         config
       );
-      // console.log(data);
       dispatch(getAllMembers(user?._id));
       setLoading(false);
       setUserListActive(!userListActive);

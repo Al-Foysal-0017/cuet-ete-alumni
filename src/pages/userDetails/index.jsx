@@ -26,8 +26,6 @@ const Profile = () => {
     }
     dispatch(getUserDetails(id));
     dispatch(getAsingleUserStories(user?._id));
-    console.log("done");
-    console.log("finished");
   }, [alert, dispatch, error, id, user?._id]);
   return (
     <>

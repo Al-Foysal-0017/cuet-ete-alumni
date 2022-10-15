@@ -32,7 +32,6 @@ export const getEventDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(
       `${process.env.REACT_APP_API_URL}/event/${id}`
     );
-    console.log(data);
     dispatch({ type: EVENT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     console.log(error);
@@ -59,7 +58,6 @@ export const eventCreate = (eventData) => async (dispatch) => {
     dispatch({ type: CREATE_EVENT_SUCCESS, payload: data.event });
     dispatch(getAllEvents());
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: CREATE_EVENT_FAIL,
       payload:

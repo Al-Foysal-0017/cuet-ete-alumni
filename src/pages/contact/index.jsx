@@ -48,7 +48,6 @@ const Contact = () => {
               email: "",
               desc: "",
             });
-            console.log("result:>>", result);
           },
           (error) => {
             setLoading(false);

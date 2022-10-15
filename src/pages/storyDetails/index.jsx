@@ -43,11 +43,10 @@ const StoryDetails = () => {
         },
       };
 
-      const data = await axios.delete(
+      await axios.delete(
         `${process.env.REACT_APP_API_URL}/story/${id}`,
         config
       );
-      console.log("data:>>", data);
       navigate("/stories");
       setDeleteLoading(false);
     } catch (error) {

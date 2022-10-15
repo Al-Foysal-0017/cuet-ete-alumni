@@ -29,7 +29,6 @@ const CreateEvent = () => {
 
   const [selectedFile, setSelectedFile] = useState("");
   const [tempFile, setTempFile] = useState(null);
-  console.log("selectedFile:>>", selectedFile);
 
   const onImageChange = (e) => {
     e.persist();

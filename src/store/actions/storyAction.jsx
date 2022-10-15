@@ -80,7 +80,6 @@ export const getStoryDetails = (id) => async (dispatch) => {
     );
     console.log(data);
     dispatch({ type: STORY_DETAILS_SUCCESS, payload: data });
-    console.log(`It's called. ID-${id}`);
   } catch (error) {
     dispatch({
       type: STORY_DETAILS_FAIL,
@@ -139,7 +138,6 @@ export const likeStory = (storyId, userId) => async (dispatch, getState) => {
       { userId },
       config
     );
-    console.log(data);
     dispatch({ type: LIKE_STORY_SUCCESS, payload: data });
     dispatch(getAllStories());
   } catch (error) {

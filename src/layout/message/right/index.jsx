@@ -57,7 +57,6 @@ const MessageRight = ({
 
   // Receive Message from parent component
   useEffect(() => {
-    console.log("Message Arrived: ", receivedMessage);
     if (receivedMessage !== null && receivedMessage.chatId === chat._id) {
       dispatch(getAllMessages(currentChat?._id));
       // setMessages([...messages, receivedMessage]);

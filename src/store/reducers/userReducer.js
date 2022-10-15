@@ -49,8 +49,6 @@ const initState = {
   isAuthenticated: false,
 };
 
-console.log("initState:>>>", initState);
-
 const verifyToken = (token) => {
   const decodeToken = jwt_decode(token);
   const expiresIn = new Date(decodeToken.exp * 1000);
@@ -81,7 +79,6 @@ export const userReducer = (state = initState, action) => {
   } else if (action.type === SET_TOKEN) {
     const decoded = verifyToken(action.payload);
     const { user } = decoded;
-    console.log(user);
     return {
       ...state,
       token: action.payload,

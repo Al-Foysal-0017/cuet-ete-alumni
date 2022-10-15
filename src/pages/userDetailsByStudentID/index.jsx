@@ -17,18 +17,8 @@ const Profile = () => {
   const alert = useAlert();
   const { id } = useParams();
   const dispatch = useDispatch();
-  // const { loading, error, user } = useSelector((state) => state.userDetails);
   const { aUserStories } = useSelector((state) => state.aUserAllStory);
   const aUserStoriesState = useSelector((state) => state.aUserAllStory);
-  // useEffect(() => {
-  //   if (error) {
-  //     alert.error(error);
-  //   }
-  //   dispatch(getUserDetails(id));
-  //   dispatch(getAsingleUserStories(user?._id));
-  //   console.log("done");
-  //   console.log("finished");
-  // }, [alert, dispatch, error, id, user?._id]);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -38,8 +28,6 @@ const Profile = () => {
         const { data } = await axios.get(
           `${process.env.REACT_APP_API_URL}/user/student/${id}`
         );
-        console.log("SJJHDJHJHSD-data:>>>>>>>>>", data);
-        console.log("SJJHDJHJHSD-user:>>>>>>>>>", data?.user[0]);
         if (data?.user?.length > 0) {
           setUser(data?.user[0]);
         }

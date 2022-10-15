@@ -71,7 +71,6 @@ const Table = ({ users }) => {
 
   useEffect(() => {
     const result = users?.filter((user) => {
-      // console.log(user.student_id);
       return (
         user?.firstName?.toLowerCase().match(search.toLowerCase()) ||
         user?.lastName?.toLowerCase().match(search.toLowerCase()) ||
