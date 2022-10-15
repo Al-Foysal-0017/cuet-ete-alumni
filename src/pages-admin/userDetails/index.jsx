@@ -40,21 +40,18 @@ const UserDetails = () => {
     dispatch(getAllUsers());
 
     //sending sms
-    // const greenwebsms = new URLSearchParams();
-    // greenwebsms.append(
-    //   "token",
-    //   "8229165538165745053879f2e330f24bc412f612809d26591919"
-    // );
-    // greenwebsms.append("to", `+8801753210017`);
-    // greenwebsms.append(
-    //   "message",
-    //   `চুয়েট অ্যালুমনাই এ নিবন্ধনের জন্য আপনার ওটিপি (OTP) কোড: 617537`
-    // );
-    // axios
-    //   .post("http://api.greenweb.com.bd/api.php", greenwebsms)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   });
+    const greenwebsms = new URLSearchParams();
+    greenwebsms.append(
+      "token",
+      "8229165538165745053879f2e330f24bc412f612809d26591919"
+    );
+    greenwebsms.append("to", `+88${number}`);
+    greenwebsms.append("message", `Login Again.`);
+    axios
+      .post("http://api.greenweb.com.bd/api.php", greenwebsms)
+      .then((response) => {
+        console.log(response.data);
+      });
   };
   useEffect(() => {
     if (error) {
