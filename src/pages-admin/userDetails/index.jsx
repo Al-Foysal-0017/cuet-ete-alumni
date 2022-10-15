@@ -46,7 +46,12 @@ const UserDetails = () => {
       "8229165538165745053879f2e330f24bc412f612809d26591919"
     );
     greenwebsms.append("to", `+88${number}`);
-    greenwebsms.append("message", `Login Again.`);
+    greenwebsms.append(
+      "message",
+      `Congratulation ${
+        user?.firstName + " " + user?.lastName
+      }, আপনাকে চুয়েট ইটিই অ্যালুমনাই এ Approve দেওয়া হয়েছে। বর্তমানে ওয়েবসাইটে login করা থাকলে logout করে পুনরায় login করুন।`
+    );
     axios
       .post("http://api.greenweb.com.bd/api.php", greenwebsms)
       .then((response) => {
