@@ -6,9 +6,11 @@ import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
 import Title from "../../components/title";
 import { SET_TOKEN } from "../../store/types/userConstants";
+import { useAlert } from "react-alert";
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
+  const alert = useAlert();
   let navigate = useNavigate();
   const { user, token } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
@@ -48,6 +50,10 @@ const UpdateProfile = () => {
     if (imagePickRef.current) {
       imagePickRef.current.click();
     }
+  };
+
+  const canNotChange = () => {
+    alert.error("You can not change your name, mobile number & student id");
   };
 
   const handleClick = async (e) => {
@@ -174,6 +180,7 @@ const UpdateProfile = () => {
                 width: "100%",
                 maxWidth: "800px",
               }}
+              onClick={canNotChange}
             >
               <label>First Name</label>
               <input
@@ -192,6 +199,7 @@ const UpdateProfile = () => {
                 width: "100%",
                 maxWidth: "800px",
               }}
+              onClick={canNotChange}
             >
               <label>Last Name</label>
               <input
@@ -204,7 +212,7 @@ const UpdateProfile = () => {
               />
             </div>
           </div>
-          <div className="inputBox">
+          <div className="inputBox" onClick={canNotChange}>
             <label>Student ID</label>
             <input
               className="signUp__input"
@@ -313,7 +321,7 @@ const UpdateProfile = () => {
               </select>
             </div>
           </div>
-          <div className="inputBox">
+          <div className="inputBox" onClick={canNotChange}>
             <label>Mobile Number</label>
             <input
               className="signUp__input"

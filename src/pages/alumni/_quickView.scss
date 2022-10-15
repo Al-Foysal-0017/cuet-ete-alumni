@@ -1,0 +1,42 @@
+.quickView {
+  margin-top: 3rem;
+
+  &__contr {
+    margin-top: 2rem;
+    &__batch {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    &__ids {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &__id {
+      margin: 8px;
+      border: 2px solid #05be71;
+      width: fit-content;
+      padding: 12px 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &__idLoad {
+      margin: 8px;
+      border: 2px solid rgba(128, 128, 128, 0.4);
+      color: rgba(128, 128, 128, 0.6);
+      width: fit-content;
+      padding: 12px 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &__idNull {
+      margin: 8px;
+      border: 2px solid tomato;
+      color: tomato;
+      width: fit-content;
+      padding: 12px 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}

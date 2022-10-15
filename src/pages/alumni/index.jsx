@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import Container from "../../components/container/Container";
 import PageLoader from "../../components/pageLoader";
 import { getAllUsers } from "../../store/actions/userAction";
+import QuickView from "./QuickView";
+import RawView from "./RawView";
+import "./__findAlumni.scss";
+import "./_quickView.scss";
 
 const Alumni = () => {
   const dispatch = useDispatch();
   const { users, loading } = useSelector((state) => state.usersRequest);
 
+  const [showQuickView, setShowQuickView] = useState(false);
   const [search, setSearch] = useState("");
 
   const filterAlimni = users?.filter((item) => item?.role === "alumni");
@@ -33,44 +37,42 @@ const Alumni = () => {
         <>
           <div className="communityDetails__head">Find Alumni</div>
 
-          <div className="inputFieldCommunityDetailsCont">
-            <input
-              className="inputFieldCommunityDetails"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
+          <div className="findAlumnitop">
+            <div
+              className="findAlumnitop__left"
+              onClick={() => {
+                setShowQuickView(true);
               }}
-              placeholder="Search by name, batch, id...."
+              style={{
+                background: showQuickView ? "#05be71" : "",
+                color: showQuickView ? "#fff" : "#000",
+              }}
+            >
+              Quick View
+            </div>
+            <div
+              className="findAlumnitop__right"
+              onClick={() => {
+                setShowQuickView(false);
+              }}
+              style={{
+                background: !showQuickView ? "#05be71" : "",
+                color: !showQuickView ? "#fff" : "#000",
+              }}
+            >
+              Raw View
+            </div>
+          </div>
+
+          {showQuickView ? (
+            <QuickView alumni={filterAlimni} />
+          ) : (
+            <RawView
+              search={search}
+              setSearch={setSearch}
+              filterSearch={filterSearch}
             />
-          </div>
-
-          <div className="communityDetails__container">
-            {filterSearch?.length === 0 && (
-              <div className="NoAlumniFound">No alumni found!!!</div>
-            )}
-            {filterSearch.map((item, index) => (
-              <div className="communityDetails__box" key={index}>
-                <img
-                  className="communityDetails__img"
-                  src={item?.avatar?.url}
-                  alt=""
-                />
-                <div className="communityDetails__box__right">
-                  <div className="communityDetails__name">
-                    {item.firstName} {item?.lastName}
-                  </div>
-                  <div className="">Batch: {item.batch}</div>
-                  <div className="">ID: {item.student_id}</div>
-
-                  <Link to={`/user/details/${item._id}`}>
-                    <button className="communityDetails__button">
-                      Details
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+          )}
         </>
       )}
     </Container>

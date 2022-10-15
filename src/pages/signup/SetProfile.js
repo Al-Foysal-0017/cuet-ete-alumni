@@ -95,7 +95,7 @@ const SetProfile = () => {
   };
 
   const canNotChange = () => {
-    alert.error("You can not update your name, mobile number, student id");
+    alert.error("You can not change your name, mobile number & student id");
   };
   useEffect(() => {
     if (error) {

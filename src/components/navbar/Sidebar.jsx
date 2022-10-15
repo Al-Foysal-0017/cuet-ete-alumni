@@ -133,6 +133,16 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
             )}
           </div>
           <ul className="SidebarItems">
+            <Link
+              onClick={() => {
+                setOpenSidebar(!openSidebar);
+              }}
+              className="sidebar-link"
+              to="/"
+              style={{ fontWeight: "500" }}
+            >
+              Home
+            </Link>
             {navRoutes.map((item) => (
               <li key={item.name} className="SidebarItem">
                 <Link

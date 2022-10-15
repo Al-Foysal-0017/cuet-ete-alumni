@@ -3,7 +3,7 @@ export const navRoutes = [
   { name: "Community", route: "/community" },
   { name: "Stories", route: "/stories" },
   { name: "About", route: "/about" },
-  { name: "Alumni", route: "/alumni" },
+  { name: "Find alumni", route: "/alumni" },
 ];
 
 export const navRoutesRight = [
