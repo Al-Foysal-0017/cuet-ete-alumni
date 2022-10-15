@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./__signUp.scss";
 import Container from "../../components/container/Container";
 import Title from "../../components/title";
-import axios from "axios";
 import { useAlert } from "react-alert";
 import Footer from "../../components/footer";
 
