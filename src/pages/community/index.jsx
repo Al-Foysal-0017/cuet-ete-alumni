@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "../../components/container/Container";
 import Footer from "../../components/footer";
@@ -8,8 +8,14 @@ import auImg from "../../assets/flag/au.svg";
 import deImg from "../../assets/flag/de.svg";
 import krImg from "../../assets/flag/kr.svg";
 import usImg from "../../assets/flag/us.svg";
+import { getAllUsers } from "../../store/actions/userAction";
+import { useDispatch } from "react-redux";
 
 const Community = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
   return (
     <>
       <div className="signUpBanner"></div>
