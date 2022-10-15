@@ -79,3 +79,9 @@
     width: 100%;
   }
 }
+
+@media (max-width: 532px) {
+  .signUpBanner {
+    background-size: contain;
+  }
+}
