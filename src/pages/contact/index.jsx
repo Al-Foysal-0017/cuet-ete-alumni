@@ -35,7 +35,8 @@ const Contact = () => {
           // process.env.REACT_APP_TEMPLATE_ID,
           "template_gbefyip",
           form.current,
-          process.env.REACT_APP_EMAILJS_ID
+          // process.env.REACT_APP_EMAILJS_ID
+          "Uk7IKHOF9_YbXu_jY"
         )
         .then(
           (result) => {
