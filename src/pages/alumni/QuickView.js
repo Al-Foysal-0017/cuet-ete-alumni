@@ -1,6 +1,5 @@
 import React from "react";
 import CheckAlumni from "./checkAlumni";
-import PageLoader from "../../components/pageLoader/index";
 import {
   batch12,
   batch13,
@@ -13,7 +12,7 @@ import {
   batch20,
 } from "./data";
 
-const QuickView = ({ alumni }) => {
+const QuickView = () => {
   return (
     <div className="quickView">
       <div className="quickView__contr">
