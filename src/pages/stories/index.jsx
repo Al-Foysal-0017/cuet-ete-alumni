@@ -25,8 +25,25 @@ const Stories = () => {
       <Container>
         {loading && <PageLoader />}
         {!loading && user && (
-          //  {  }
           <div className="createStoryLinkBox">
+            <div
+              className="profile__story__top"
+              style={{ marginBottom: "1rem" }}
+            >
+              <img
+                className="profile__story__img"
+                src={user?.avatar?.url}
+                alt=""
+              />
+              <div className="profile__story__top__right">
+                <div className="profile__story__name">
+                  {user?.firstName} {user?.lastName}
+                </div>
+                <div className="profile__story__name">
+                  ID: {user?.student_id}
+                </div>
+              </div>
+            </div>
             <div className="createStoryLinkBox__ques">What's on your mind?</div>
             {user?.role !== "subscriber" ? (
               <button className="createStoryLinkBox__create">

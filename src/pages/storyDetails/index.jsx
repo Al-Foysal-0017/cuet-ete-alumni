@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { AiFillDelete } from "react-icons/ai";
 import {
   getStoryDetails,
   storyCommentCreate,
@@ -10,11 +11,16 @@ import Container from "../../components/container/Container";
 import "./__storyDetails.scss";
 import moment from "moment";
 import CommentLoading from "./commentLoader/CommentLoading";
+import axios from "axios";
+import { useAlert } from "react-alert";
 
 const StoryDetails = () => {
   const { id } = useParams();
+  const alert = useAlert();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  let navigate = useNavigate();
+  const [delteLoading, setDeleteLoading] = useState(false);
+  const { user, token } = useSelector((state) => state.user);
   const { story, loading, comments } = useSelector((state) => state.story);
   const storyCmtState = useSelector((state) => state.storyCmt);
 
@@ -26,6 +32,29 @@ const StoryDetails = () => {
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = async (id) => {
+    setDeleteLoading(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const data = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/story/${id}`,
+        config
+      );
+      console.log("data:>>", data);
+      navigate("/stories");
+      setDeleteLoading(false);
+    } catch (error) {
+      console.log(error);
+      alert.error("Something went wrong. Try again.");
+      setDeleteLoading(false);
+    }
   };
 
   const submitHandler = async (e) => {
@@ -72,14 +101,26 @@ const StoryDetails = () => {
               src={story?.img?.url}
               alt=""
             />
+            {/* Delete */}
+            {user?._id === story.userId && (
+              <div className="deleteStory">
+                {delteLoading ? (
+                  "Deleting..."
+                ) : (
+                  <div className="deleteStory__icon">
+                    <AiFillDelete
+                      onClick={() => {
+                        handleDelete(id);
+                      }}
+                      size={32}
+                      color={"tomato"}
+                    />
+                  </div>
+                )}
 
-            {/* {user?._id === story.userId && (
-              <div>
-                <div>Update Story</div>
-                <div>Delete Story</div>
+                <div className="deleteStory__txt">Delete Story</div>
               </div>
-            )} */}
-
+            )}
             <div className="storyDetails__content">
               <div className="storyDetails__content__title">{story?.title}</div>
               <div className="storyDetails__content__organized">

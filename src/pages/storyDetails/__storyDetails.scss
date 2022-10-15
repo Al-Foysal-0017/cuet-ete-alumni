@@ -112,6 +112,24 @@
   margin-top: 3rem;
 }
 
+.deleteStory {
+  border: 1px solid tomato;
+  width: fit-content;
+  margin-top: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  &__icon {
+    cursor: pointer;
+  }
+  &__txt {
+    color: rgba(128, 128, 128, 0.418);
+    font-size: 12px;
+  }
+}
+
 .noCommmnet {
   border: 1px solid tomato;
   padding: 1rem;

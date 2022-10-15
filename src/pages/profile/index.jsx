@@ -143,6 +143,24 @@ const Profile = () => {
             <section className="allStoriesInProfContianer">
               <Title>My Stories</Title>
               <section className="createStoryLinkBoxInProfile">
+                <div
+                  className="profile__story__top"
+                  style={{ marginBottom: "1rem" }}
+                >
+                  <img
+                    className="profile__story__img"
+                    src={user?.avatar?.url}
+                    alt=""
+                  />
+                  <div className="profile__story__top__right">
+                    <div className="profile__story__name">
+                      {user?.firstName} {user?.lastName}
+                    </div>
+                    <div className="profile__story__name">
+                      ID: {user?.student_id}
+                    </div>
+                  </div>
+                </div>
                 <div className="createStoryLinkBox__ques">
                   What's on your mind?
                 </div>
@@ -194,6 +212,9 @@ const Profile = () => {
                           <div className="profile__story__top__right">
                             <div className="profile__story__name">
                               {item?.userName}
+                            </div>
+                            <div className="profile__story__name">
+                              ID: {user?.student_id}
                             </div>
                             <div className="profile__story__date">
                               {moment(item?.createdAt).calendar()}

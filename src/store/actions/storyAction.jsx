@@ -90,27 +90,35 @@ export const getStoryDetails = (id) => async (dispatch) => {
 };
 
 //Create Story Comment
-export const storyCommentCreate = (storyCommentData) => async (dispatch) => {
-  try {
-    dispatch({ type: STORY_COMMENT_REQUEST });
+export const storyCommentCreate =
+  (storyCommentData) => async (dispatch, getState) => {
+    const {
+      user: { token },
+    } = getState();
+    try {
+      dispatch({ type: STORY_COMMENT_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_API_URL}/story/comment`,
-      storyCommentData,
-      config
-    );
-    dispatch({ type: STORY_COMMENT_SUCCESS, payload: data });
-    dispatch(getStoryDetails(storyCommentData?.commentId));
-  } catch (error) {
-    dispatch({
-      type: STORY_COMMENT_FAIL,
-      payload:
-        error.response.data.message || "Something went wrong. Try again.",
-    });
-  }
-};
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/story/comment`,
+        storyCommentData,
+        config
+      );
+      dispatch({ type: STORY_COMMENT_SUCCESS, payload: data });
+      dispatch(getStoryDetails(storyCommentData?.commentId));
+    } catch (error) {
+      dispatch({
+        type: STORY_COMMENT_FAIL,
+        payload:
+          error.response.data.message || "Something went wrong. Try again.",
+      });
+    }
+  };
 
 //LIKE Story
 export const likeStory = (storyId, userId) => async (dispatch, getState) => {
