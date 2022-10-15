@@ -45,7 +45,6 @@
 }
 
 .signUpBanner {
-  // background-image: url("../../assets/img/tree.JPG");
   background-image: linear-gradient(to bottom, transparent, #181d1c),
     url("../../assets/img/tree.JPG");
   background-position: center;
@@ -82,8 +81,8 @@
   }
 }
 
-// @media (max-width: 532px) {
-//   .signUpBanner {
-//     background-size: contain;
-//   }
-// }
+@media (max-width: 740px) {
+  .signUpBanner {
+    background-attachment: scroll;
+  }
+}
