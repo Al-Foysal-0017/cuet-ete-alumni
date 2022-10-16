@@ -32,9 +32,7 @@ const MessageRight = ({
           `${process.env.REACT_APP_API_URL}/admin/user/${userId}`
         );
         setUserData(data.user);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
 
     if (chat !== null) getUserData();

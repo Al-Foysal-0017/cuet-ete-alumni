@@ -85,13 +85,11 @@ const UpdateProfile = () => {
         myForm,
         config
       );
-      console.log(data.token);
       localStorage.setItem("myToken", data.token);
       dispatch({ type: SET_TOKEN, payload: data.token });
       setLoading(false);
       navigate("/profile");
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };

@@ -81,14 +81,12 @@ const SetProfile = () => {
         myForm,
         config
       );
-      console.log(data.token);
       localStorage.setItem("myToken", data.token);
       dispatch({ type: SET_TOKEN, payload: data.token });
       dispatch(getAllUsers());
       navigate("/profile");
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setError("Something went wrong. Try again.");
       setLoading(false);
     }

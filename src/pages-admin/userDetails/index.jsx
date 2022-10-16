@@ -34,11 +34,7 @@ const UserDetails = () => {
       setLoader(false);
       //sending sms
       const greenwebsms = new URLSearchParams();
-      greenwebsms.append(
-        "token",
-        "8229165538165745053879f2e330f24bc412f612809d26591919"
-      );
-      // greenwebsms.append("token", process.env.REACT_APP_GREEN_WEB_SMS_TOKEN);
+      greenwebsms.append("token", process.env.REACT_APP_GREEN_WEB_SMS_TOKEN);
       greenwebsms.append("to", `+88${number}`);
       greenwebsms.append(
         "message",
@@ -46,15 +42,9 @@ const UserDetails = () => {
           user?.firstName + " " + user?.lastName
         }, আপনাকে চুয়েট ইটিই অ্যালুমনাই এ Approve দেওয়া হয়েছে। বর্তমানে ওয়েবসাইটে login করা থাকলে logout করে পুনরায় login করুন।`
       );
-      axios
-        // .post(process.env.REACT_APP_GREEN_WEB_SMS_LINK, greenwebsms)
-        .post("http://api.greenweb.com.bd/api.php", greenwebsms)
-        .then((response) => {
-          console.log(response.data);
-        });
+      axios.post(process.env.REACT_APP_GREEN_WEB_SMS_LINK, greenwebsms);
       navigate("/admin/all-requests");
     } catch (error) {
-      console.log(error);
       alert.error(error.response.data.message || "Something went wrong.");
       setLoader(false);
     }

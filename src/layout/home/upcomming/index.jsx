@@ -23,7 +23,6 @@ const Upcomming = () => {
         setEvents(data?.events);
         setLoading(false);
       } catch (error) {
-        console.log(error);
         setLoading(false);
       }
     };

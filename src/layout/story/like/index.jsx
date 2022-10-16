@@ -38,12 +38,11 @@ const LikeStory = ({ item, index }) => {
           },
         };
 
-        const { data } = await axios.put(
+        await axios.put(
           `${process.env.REACT_APP_API_URL}/story/like/${storyId}`,
           { userId },
           config
         );
-        console.log(data);
         dispatch(getAllStories());
         setLoading(false);
       } catch (error) {

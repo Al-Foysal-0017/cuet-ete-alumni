@@ -43,7 +43,6 @@ const BtnValue = [
 
 const BajajAreaChartCard = () => {
   const [selectBtn, setSelectBtn] = useState(BtnValue[4].name);
-  console.log(setSelectBtn);
   return (
     <div className="chart">
       {BtnValue.map((item, index) => (

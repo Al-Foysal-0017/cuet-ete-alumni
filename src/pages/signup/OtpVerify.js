@@ -39,7 +39,6 @@ const OtpVerify = () => {
     }
   };
   useEffect(() => {
-    console.log(registerErrors);
     if (registerErrors) {
       alert.error(registerErrors);
       dispatch(clearErrors());

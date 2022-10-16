@@ -65,7 +65,6 @@ export const signup = (userData) => async (dispatch) => {
     dispatch({ type: CLOSE_LOADER });
     dispatch({ type: SET_TOKEN, payload: data.token });
   } catch (error) {
-    console.log(error);
     dispatch({ type: CLOSE_LOADER });
     dispatch({
       type: REGISTER_ERRORS,

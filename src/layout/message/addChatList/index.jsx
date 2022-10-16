@@ -33,9 +33,7 @@ const AddChatList = ({
       dispatch(getAllMembers(user?._id));
       setLoading(false);
       setUserListActive(!userListActive);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   return (
     <>

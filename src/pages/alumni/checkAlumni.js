@@ -19,13 +19,11 @@ const CheckAlumni = ({ studentId }) => {
         const { data } = await axios.get(
           `${process.env.REACT_APP_API_URL}/user/student/${studentId}`
         );
-        console.log(data);
         if (data?.user?.length > 0) {
           setIsPresent(true);
         }
         setLoading(false);
       } catch (error) {
-        console.log(error);
         setLoading(false);
       }
     };

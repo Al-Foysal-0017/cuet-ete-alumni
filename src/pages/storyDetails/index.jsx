@@ -50,7 +50,6 @@ const StoryDetails = () => {
       navigate("/stories");
       setDeleteLoading(false);
     } catch (error) {
-      console.log(error);
       alert.error("Something went wrong. Try again.");
       setDeleteLoading(false);
     }

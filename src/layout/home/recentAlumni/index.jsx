@@ -21,7 +21,6 @@ const RecentJobs = () => {
         setUsers(data?.users);
         setLoading(false);
       } catch (error) {
-        console.log(error);
         setLoading(false);
       }
     };

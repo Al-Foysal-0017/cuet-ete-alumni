@@ -55,7 +55,6 @@ export const msgCreate = (Data) => async (dispatch) => {
     dispatch({ type: CREATE_MESSAGE_SUCCESS, payload: data });
     dispatch(getAllMessages(Data?.chatId));
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: CREATE_MESSAGE_FAIL,
       payload:

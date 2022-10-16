@@ -94,7 +94,6 @@ const CreateEvent = () => {
       setLoading(false);
       navigate("/admin/all-events");
     } catch (error) {
-      console.log(error.response);
       alert.error("Something went wrong.");
       setLoading(false);
     }

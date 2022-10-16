@@ -34,7 +34,6 @@ export const getEventDetails = (id) => async (dispatch) => {
     );
     dispatch({ type: EVENT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: EVENT_DETAILS_FAIL,
       payload: error.response.data.message || "Something went wrong.",

@@ -62,7 +62,6 @@ export const storyCreate = (storyData) => async (dispatch, getState) => {
     dispatch({ type: CREATE_STORY_SUCCESS, payload: data.story });
     dispatch(getAllStories());
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: CREATE_STORY_FAIL,
       payload:
@@ -78,7 +77,6 @@ export const getStoryDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(
       `${process.env.REACT_APP_API_URL}/story/${id}`
     );
-    console.log(data);
     dispatch({ type: STORY_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

@@ -77,7 +77,6 @@ const OtpPassword = () => {
           },
         });
       } catch (error) {
-        console.log(error);
         alert.error(
           error.response.data.message || "Something went wrong. Try again."
         );
