@@ -8,8 +8,8 @@ import {
   batch16,
   batch17,
   batch18,
-  batch19,
-  batch20,
+  // batch19,
+  // batch20,
 } from "./data";
 
 const QuickView = () => {
@@ -72,22 +72,22 @@ const QuickView = () => {
         </div>
       </div>
 
-      <div className="quickView__contr">
+      {/* <div className="quickView__contr">
         <div className="quickView__contr__batch">Batch-19</div>
         <div className="quickView__contr__ids">
           {batch19.map((item, index) => (
             <CheckAlumni key={index} studentId={item} />
           ))}
         </div>
-      </div>
-      <div className="quickView__contr">
+      </div> */}
+      {/* <div className="quickView__contr">
         <div className="quickView__contr__batch">Batch-20</div>
         <div className="quickView__contr__ids">
           {batch20.map((item, index) => (
             <CheckAlumni key={index} studentId={item} />
           ))}
         </div>
-      </div>
+      </div> */}
       <div style={{ marginBottom: "7rem" }} />
     </div>
   );
